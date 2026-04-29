@@ -1,0 +1,1084 @@
+2026-04-22 14:45:34.560 +05:30 [INF] FileVault Admin Panel starting on https://localhost:5003
+2026-04-22 14:45:34.721 +05:30 [INF] User profile is available. Using 'C:\Users\Lenovo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-22 14:45:35.216 +05:30 [INF] Now listening on: https://localhost:51370
+2026-04-22 14:45:35.218 +05:30 [INF] Now listening on: http://localhost:51371
+2026-04-22 14:45:35.292 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-22 14:45:35.295 +05:30 [INF] Hosting environment: Development
+2026-04-22 14:45:35.297 +05:30 [INF] Content root path: F:\Antigravity Files\FileVaultAdmin
+2026-04-22 14:45:37.467 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 14:45:37.791 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-22 14:45:37.811 +05:30 [INF] AuthenticationScheme: Cookies was challenged.
+2026-04-22 14:45:37.821 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 302 0 null 366.5569ms
+2026-04-22 14:45:37.835 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Auth/Login?ReturnUrl=%2F - null null
+2026-04-22 14:45:37.868 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 14:45:37.938 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller FileVaultAdmin.Controllers.AuthController (FileVaultAdmin).
+2026-04-22 14:45:38.994 +05:30 [INF] Executing ViewResult, running view Login.
+2026-04-22 14:45:39.235 +05:30 [INF] Executed ViewResult - view Login executed in 246.2769ms.
+2026-04-22 14:45:39.238 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin) in 1297.1644ms
+2026-04-22 14:45:39.241 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 14:45:39.245 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Auth/Login?ReturnUrl=%2F - 200 null text/html; charset=utf-8 1410.2372ms
+2026-04-22 14:45:39.258 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/css/admin.css - null null
+2026-04-22 14:45:39.259 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 14:45:39.259 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 14:45:39.359 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 100.01ms
+2026-04-22 14:45:39.368 +05:30 [INF] Sending file. Request path: '/css/admin.css'. Physical path: 'F:\Antigravity Files\FileVaultAdmin\wwwroot\css\admin.css'
+2026-04-22 14:45:39.371 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/css/admin.css - 200 14848 text/css 112.667ms
+2026-04-22 14:45:39.441 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 182.603ms
+2026-04-22 14:45:39.508 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/favicon.ico - null null
+2026-04-22 14:45:39.517 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/favicon.ico - 404 0 null 9.6893ms
+2026-04-22 14:45:39.523 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:51370/favicon.ico, Response status code: 404
+2026-04-22 14:46:00.610 +05:30 [INF] Request starting HTTP/2 POST https://localhost:51370/Auth/Login - application/x-www-form-urlencoded 250
+2026-04-22 14:46:00.614 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 14:46:00.630 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(FileVaultAdmin.Models.ViewModels.LoginViewModel) on controller FileVaultAdmin.Controllers.AuthController (FileVaultAdmin).
+2026-04-22 14:46:14.777 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin) in 14144.9945ms
+2026-04-22 14:46:15.053 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 14:46:15.064 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+System.FormatException: Element 'emailConfirmToken' does not match any field or property of class FileVaultAdmin.Models.Domain.AppUser.
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.DeserializeClass(BsonDeserializationContext context)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.Deserialize(BsonDeserializationContext context, BsonDeserializationArgs args)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Deserialize[TValue](IBsonSerializer`1 serializer, BsonDeserializationContext context)
+   at MongoDB.Driver.Core.Operations.CursorBatchDeserializationHelper.DeserializeBatch[TDocument](RawBsonArray batch, IBsonSerializer`1 documentSerializer, MessageEncoderSettings messageEncoderSettings)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.CreateFirstCursorBatch(BsonDocument cursorDocument)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.CreateCursor(IChannelSourceHandle channelSource, IChannelHandle channel, BsonDocument commandResult)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.FirstOrDefaultAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at FileVaultAdmin.Services.AdminService.GetUserByEmailAsync(String email) in F:\Antigravity Files\FileVaultAdmin\Services\AdminService.cs:line 68
+   at FileVaultAdmin.Controllers.AuthController.Login(LoginViewModel model) in F:\Antigravity Files\FileVaultAdmin\Controllers\AuthController.cs:line 33
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-04-22 14:46:15.314 +05:30 [INF] Request finished HTTP/2 POST https://localhost:51370/Auth/Login - 500 null text/html; charset=utf-8 14704.675ms
+2026-04-22 14:46:15.399 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 14:46:15.405 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 14:46:15.455 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 50.1427ms
+2026-04-22 14:46:15.459 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 59.9078ms
+2026-04-22 16:00:53.712 +05:30 [INF] FileVault Admin Panel starting on https://localhost:5003
+2026-04-22 16:00:54.810 +05:30 [INF] User profile is available. Using 'C:\Users\Lenovo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-22 16:00:55.333 +05:30 [INF] Now listening on: https://localhost:51370
+2026-04-22 16:00:55.337 +05:30 [INF] Now listening on: http://localhost:51371
+2026-04-22 16:00:55.399 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-22 16:00:55.401 +05:30 [INF] Hosting environment: Development
+2026-04-22 16:00:55.404 +05:30 [INF] Content root path: F:\Antigravity Files\FileVaultAdmin
+2026-04-22 16:00:58.792 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 16:00:59.252 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-22 16:00:59.270 +05:30 [INF] AuthenticationScheme: Cookies was challenged.
+2026-04-22 16:00:59.291 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 302 0 null 526.8254ms
+2026-04-22 16:00:59.297 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Auth/Login?ReturnUrl=%2F - null null
+2026-04-22 16:00:59.351 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 16:00:59.421 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller FileVaultAdmin.Controllers.AuthController (FileVaultAdmin).
+2026-04-22 16:01:00.105 +05:30 [INF] Executing ViewResult, running view Login.
+2026-04-22 16:01:00.255 +05:30 [INF] Executed ViewResult - view Login executed in 154.9033ms.
+2026-04-22 16:01:00.260 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin) in 833.8046ms
+2026-04-22 16:01:00.263 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 16:01:00.266 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Auth/Login?ReturnUrl=%2F - 200 null text/html; charset=utf-8 969.4135ms
+2026-04-22 16:01:00.284 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:01:00.284 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/css/admin.css - null null
+2026-04-22 16:01:00.284 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:01:00.417 +05:30 [INF] The file /css/admin.css was not modified
+2026-04-22 16:01:00.419 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 135.4057ms
+2026-04-22 16:01:00.428 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/css/admin.css - 304 null text/css 144.3734ms
+2026-04-22 16:01:00.594 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 310.0766ms
+2026-04-22 16:01:00.629 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/favicon.ico - null null
+2026-04-22 16:01:00.638 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/favicon.ico - 404 0 null 8.8583ms
+2026-04-22 16:01:00.644 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:51370/favicon.ico, Response status code: 404
+2026-04-22 16:01:44.099 +05:30 [INF] Request starting HTTP/2 POST https://localhost:51370/Auth/Login - application/x-www-form-urlencoded 266
+2026-04-22 16:01:44.112 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 16:01:44.150 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(FileVaultAdmin.Models.ViewModels.LoginViewModel) on controller FileVaultAdmin.Controllers.AuthController (FileVaultAdmin).
+2026-04-22 16:02:05.107 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin) in 20946.2123ms
+2026-04-22 16:02:05.220 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 16:02:05.231 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+System.FormatException: Element 'emailConfirmToken' does not match any field or property of class FileVaultAdmin.Models.Domain.AppUser.
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.DeserializeClass(BsonDeserializationContext context)
+   at MongoDB.Bson.Serialization.BsonClassMapSerializer`1.Deserialize(BsonDeserializationContext context, BsonDeserializationArgs args)
+   at MongoDB.Bson.Serialization.IBsonSerializerExtensions.Deserialize[TValue](IBsonSerializer`1 serializer, BsonDeserializationContext context)
+   at MongoDB.Driver.Core.Operations.CursorBatchDeserializationHelper.DeserializeBatch[TDocument](RawBsonArray batch, IBsonSerializer`1 documentSerializer, MessageEncoderSettings messageEncoderSettings)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.CreateFirstCursorBatch(BsonDocument cursorDocument)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.CreateCursor(IChannelSourceHandle channelSource, IChannelHandle channel, BsonDocument commandResult)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(RetryableReadContext context, CancellationToken cancellationToken)
+   at MongoDB.Driver.Core.Operations.FindOperation`1.ExecuteAsync(IReadBinding binding, CancellationToken cancellationToken)
+   at MongoDB.Driver.OperationExecutor.ExecuteReadOperationAsync[TResult](IReadBinding binding, IReadOperation`1 operation, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.ExecuteReadOperationAsync[TResult](IClientSessionHandle session, IReadOperation`1 operation, ReadPreference readPreference, CancellationToken cancellationToken)
+   at MongoDB.Driver.MongoCollectionImpl`1.UsingImplicitSessionAsync[TResult](Func`2 funcAsync, CancellationToken cancellationToken)
+   at MongoDB.Driver.IAsyncCursorSourceExtensions.FirstOrDefaultAsync[TDocument](IAsyncCursorSource`1 source, CancellationToken cancellationToken)
+   at FileVaultAdmin.Services.AdminService.GetUserByEmailAsync(String email) in F:\Antigravity Files\FileVaultAdmin\Services\AdminService.cs:line 68
+   at FileVaultAdmin.Controllers.AuthController.Login(LoginViewModel model) in F:\Antigravity Files\FileVaultAdmin\Controllers\AuthController.cs:line 33
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-04-22 16:02:06.073 +05:30 [INF] Request finished HTTP/2 POST https://localhost:51370/Auth/Login - 500 null text/html; charset=utf-8 21974.4657ms
+2026-04-22 16:02:06.174 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:02:06.175 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:02:06.342 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 168.3484ms
+2026-04-22 16:02:06.385 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 210.1991ms
+2026-04-22 16:04:32.975 +05:30 [INF] FileVault Admin Panel starting on https://localhost:5003
+2026-04-22 16:04:33.262 +05:30 [INF] User profile is available. Using 'C:\Users\Lenovo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-22 16:04:33.998 +05:30 [INF] Now listening on: https://localhost:51370
+2026-04-22 16:04:34.002 +05:30 [INF] Now listening on: http://localhost:51371
+2026-04-22 16:04:34.108 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-22 16:04:34.110 +05:30 [INF] Hosting environment: Development
+2026-04-22 16:04:34.113 +05:30 [INF] Content root path: F:\Antigravity Files\FileVaultAdmin
+2026-04-22 16:04:36.682 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 16:04:37.024 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-22 16:04:37.057 +05:30 [INF] AuthenticationScheme: Cookies was challenged.
+2026-04-22 16:04:37.083 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 302 0 null 414.1255ms
+2026-04-22 16:04:37.108 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Auth/Login?ReturnUrl=%2F - null null
+2026-04-22 16:04:37.150 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 16:04:37.225 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller FileVaultAdmin.Controllers.AuthController (FileVaultAdmin).
+2026-04-22 16:04:37.752 +05:30 [INF] Executing ViewResult, running view Login.
+2026-04-22 16:04:37.924 +05:30 [INF] Executed ViewResult - view Login executed in 179.3448ms.
+2026-04-22 16:04:37.929 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin) in 699.8434ms
+2026-04-22 16:04:37.932 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 16:04:37.936 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Auth/Login?ReturnUrl=%2F - 200 null text/html; charset=utf-8 828.4614ms
+2026-04-22 16:04:38.007 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:04:38.025 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:04:38.032 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 25.1393ms
+2026-04-22 16:04:38.109 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 83.7574ms
+2026-04-22 16:04:38.600 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/favicon.ico - null null
+2026-04-22 16:04:38.617 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/favicon.ico - 404 0 null 17.3435ms
+2026-04-22 16:04:38.626 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:51370/favicon.ico, Response status code: 404
+2026-04-22 16:04:53.066 +05:30 [INF] Request starting HTTP/2 POST https://localhost:51370/Auth/Login - application/x-www-form-urlencoded 250
+2026-04-22 16:04:53.076 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 16:04:53.111 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(FileVaultAdmin.Models.ViewModels.LoginViewModel) on controller FileVaultAdmin.Controllers.AuthController (FileVaultAdmin).
+2026-04-22 16:04:55.298 +05:30 [INF] AuthenticationScheme: Cookies signed in.
+2026-04-22 16:04:55.686 +05:30 [INF] Executing RedirectResult, redirecting to /.
+2026-04-22 16:04:55.694 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin) in 2577.9416ms
+2026-04-22 16:04:55.701 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 16:04:55.710 +05:30 [INF] Request finished HTTP/2 POST https://localhost:51370/Auth/Login - 302 0 null 2644.4066ms
+2026-04-22 16:04:55.717 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 16:04:55.739 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 16:04:55.750 +05:30 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller FileVaultAdmin.Controllers.HomeController (FileVaultAdmin).
+2026-04-22 16:04:56.511 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:04:56.702 +05:30 [INF] Executed ViewResult - view Index executed in 193.183ms.
+2026-04-22 16:04:56.712 +05:30 [INF] Executed action FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin) in 955.0648ms
+2026-04-22 16:04:56.717 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 16:04:56.722 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 200 null text/html; charset=utf-8 1005.3325ms
+2026-04-22 16:04:56.778 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/js/admin.js - null null
+2026-04-22 16:04:56.779 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:04:56.780 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:04:56.804 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 25.0978ms
+2026-04-22 16:04:56.825 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 45.4142ms
+2026-04-22 16:04:56.864 +05:30 [INF] Sending file. Request path: '/js/admin.js'. Physical path: 'F:\Antigravity Files\FileVaultAdmin\wwwroot\js\admin.js'
+2026-04-22 16:04:56.869 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/js/admin.js - 200 2408 text/javascript 91.8194ms
+2026-04-22 16:05:03.917 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Users - null null
+2026-04-22 16:05:03.925 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin)'
+2026-04-22 16:05:03.932 +05:30 [INF] Route matched with {action = "Index", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String, System.String) on controller FileVaultAdmin.Controllers.UsersController (FileVaultAdmin).
+2026-04-22 16:05:03.944 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:05:04.025 +05:30 [INF] Executed ViewResult - view Index executed in 81.6427ms.
+2026-04-22 16:05:04.031 +05:30 [INF] Executed action FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin) in 94.3498ms
+2026-04-22 16:05:04.035 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin)'
+2026-04-22 16:05:04.039 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Users - 200 null text/html; charset=utf-8 122.0141ms
+2026-04-22 16:05:04.066 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:05:04.073 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:05:04.088 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 14.7099ms
+2026-04-22 16:05:04.090 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 23.8079ms
+2026-04-22 16:05:06.799 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Files - null null
+2026-04-22 16:05:06.806 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 16:05:06.813 +05:30 [INF] Route matched with {action = "Index", controller = "Files"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.FilesController (FileVaultAdmin).
+2026-04-22 16:05:07.067 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:05:07.096 +05:30 [INF] Executed ViewResult - view Index executed in 30.6736ms.
+2026-04-22 16:05:07.105 +05:30 [INF] Executed action FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin) in 287.373ms
+2026-04-22 16:05:07.113 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 16:05:07.121 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Files - 200 null text/html; charset=utf-8 321.1517ms
+2026-04-22 16:05:07.161 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:05:07.165 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:05:07.190 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 29.1186ms
+2026-04-22 16:05:07.199 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 34.0452ms
+2026-04-22 16:05:08.326 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Shares - null null
+2026-04-22 16:05:08.332 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin)'
+2026-04-22 16:05:08.340 +05:30 [INF] Route matched with {action = "Index", controller = "Shares"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller FileVaultAdmin.Controllers.SharesController (FileVaultAdmin).
+2026-04-22 16:05:08.366 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:05:08.381 +05:30 [INF] Executed ViewResult - view Index executed in 15.9294ms.
+2026-04-22 16:05:08.385 +05:30 [INF] Executed action FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin) in 41.0898ms
+2026-04-22 16:05:08.389 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin)'
+2026-04-22 16:05:08.393 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Shares - 200 null text/html; charset=utf-8 66.3899ms
+2026-04-22 16:05:08.420 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:05:08.423 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:05:08.434 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 11.2032ms
+2026-04-22 16:05:08.434 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 14.5429ms
+2026-04-22 16:05:09.415 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/AuditLogs - null null
+2026-04-22 16:05:09.420 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 16:05:09.430 +05:30 [INF] Route matched with {action = "Index", controller = "AuditLogs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.AuditLogsController (FileVaultAdmin).
+2026-04-22 16:05:09.531 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:05:09.554 +05:30 [INF] Executed ViewResult - view Index executed in 24.3774ms.
+2026-04-22 16:05:09.560 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin) in 126.5946ms
+2026-04-22 16:05:09.572 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 16:05:09.581 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/AuditLogs - 200 null text/html; charset=utf-8 166.4899ms
+2026-04-22 16:05:09.613 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:05:09.625 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:05:09.637 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 23.5584ms
+2026-04-22 16:05:09.637 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 12.4219ms
+2026-04-22 16:05:13.679 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/AuditLogs - null null
+2026-04-22 16:05:13.686 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 16:05:13.688 +05:30 [INF] Route matched with {action = "Index", controller = "AuditLogs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.AuditLogsController (FileVaultAdmin).
+2026-04-22 16:05:13.699 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:05:13.702 +05:30 [INF] Executed ViewResult - view Index executed in 3.3352ms.
+2026-04-22 16:05:13.704 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin) in 12.2693ms
+2026-04-22 16:05:13.706 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 16:05:13.708 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/AuditLogs - 200 null text/html; charset=utf-8 29.1786ms
+2026-04-22 16:05:13.730 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:05:13.734 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:05:13.745 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 10.4903ms
+2026-04-22 16:05:13.747 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 16.6807ms
+2026-04-22 16:05:16.104 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 16:05:16.110 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 16:05:16.112 +05:30 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller FileVaultAdmin.Controllers.HomeController (FileVaultAdmin).
+2026-04-22 16:05:16.139 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:05:16.143 +05:30 [INF] Executed ViewResult - view Index executed in 3.9358ms.
+2026-04-22 16:05:16.146 +05:30 [INF] Executed action FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin) in 30.1891ms
+2026-04-22 16:05:16.151 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 16:05:16.153 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 200 null text/html; charset=utf-8 49.2877ms
+2026-04-22 16:05:16.167 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:05:16.170 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:05:16.177 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 7.2752ms
+2026-04-22 16:05:16.178 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 11.3062ms
+2026-04-22 16:15:17.355 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/AuditLogs - null null
+2026-04-22 16:15:17.453 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 16:15:17.521 +05:30 [INF] Route matched with {action = "Index", controller = "AuditLogs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.AuditLogsController (FileVaultAdmin).
+2026-04-22 16:15:17.735 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:15:17.755 +05:30 [INF] Executed ViewResult - view Index executed in 25.1288ms.
+2026-04-22 16:15:17.756 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin) in 233.025ms
+2026-04-22 16:15:17.757 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 16:15:17.759 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/AuditLogs - 200 null text/html; charset=utf-8 440.3553ms
+2026-04-22 16:15:17.946 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:15:17.946 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/css/admin.css - null null
+2026-04-22 16:15:17.947 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:15:17.946 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/js/admin.js - null null
+2026-04-22 16:15:17.985 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 37.8302ms
+2026-04-22 16:15:18.032 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 85.354ms
+2026-04-22 16:15:18.033 +05:30 [INF] The file /css/admin.css was not modified
+2026-04-22 16:15:18.036 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/css/admin.css - 304 null text/css 90.8598ms
+2026-04-22 16:15:18.056 +05:30 [INF] The file /js/admin.js was not modified
+2026-04-22 16:15:18.058 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/js/admin.js - 304 null text/javascript 111.5805ms
+2026-04-22 16:15:21.571 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Users - null null
+2026-04-22 16:15:21.577 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin)'
+2026-04-22 16:15:21.579 +05:30 [INF] Route matched with {action = "Index", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String, System.String) on controller FileVaultAdmin.Controllers.UsersController (FileVaultAdmin).
+2026-04-22 16:15:21.603 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:15:21.610 +05:30 [INF] Executed ViewResult - view Index executed in 7.2052ms.
+2026-04-22 16:15:21.614 +05:30 [INF] Executed action FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin) in 32.5995ms
+2026-04-22 16:15:21.615 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin)'
+2026-04-22 16:15:21.617 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Users - 200 null text/html; charset=utf-8 45.8751ms
+2026-04-22 16:15:21.635 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:15:21.635 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:15:21.639 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 3.6234ms
+2026-04-22 16:15:21.647 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 11.1299ms
+2026-04-22 16:15:31.640 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/AuditLogs - null null
+2026-04-22 16:15:31.645 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 16:15:31.646 +05:30 [INF] Route matched with {action = "Index", controller = "AuditLogs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.AuditLogsController (FileVaultAdmin).
+2026-04-22 16:15:31.652 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:15:31.655 +05:30 [INF] Executed ViewResult - view Index executed in 3.1797ms.
+2026-04-22 16:15:31.657 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin) in 8.5122ms
+2026-04-22 16:15:31.659 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 16:15:31.661 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/AuditLogs - 200 null text/html; charset=utf-8 20.5295ms
+2026-04-22 16:15:31.674 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:15:31.677 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:15:31.680 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 3.2704ms
+2026-04-22 16:15:31.681 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 6.6775ms
+2026-04-22 16:15:35.015 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/AuditLogs?action=Index&user=rajmavani19%40gmail.com - null null
+2026-04-22 16:15:35.020 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 16:15:35.022 +05:30 [INF] Route matched with {action = "Index", controller = "AuditLogs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.AuditLogsController (FileVaultAdmin).
+2026-04-22 16:15:35.209 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:15:35.211 +05:30 [INF] Executed ViewResult - view Index executed in 2.0736ms.
+2026-04-22 16:15:35.213 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin) in 188.9297ms
+2026-04-22 16:15:35.214 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 16:15:35.216 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/AuditLogs?action=Index&user=rajmavani19%40gmail.com - 200 null text/html; charset=utf-8 200.7348ms
+2026-04-22 16:15:35.228 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:15:35.236 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:15:35.238 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 10.434ms
+2026-04-22 16:15:35.239 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 3.2598ms
+2026-04-22 16:15:43.841 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Shares - null null
+2026-04-22 16:15:43.845 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin)'
+2026-04-22 16:15:43.848 +05:30 [INF] Route matched with {action = "Index", controller = "Shares"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller FileVaultAdmin.Controllers.SharesController (FileVaultAdmin).
+2026-04-22 16:15:43.866 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:15:43.869 +05:30 [INF] Executed ViewResult - view Index executed in 2.6048ms.
+2026-04-22 16:15:43.870 +05:30 [INF] Executed action FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin) in 20.4327ms
+2026-04-22 16:15:43.871 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin)'
+2026-04-22 16:15:43.873 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Shares - 200 null text/html; charset=utf-8 31.9992ms
+2026-04-22 16:15:43.888 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:15:43.891 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:15:43.894 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 3.3274ms
+2026-04-22 16:15:43.899 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 11.3433ms
+2026-04-22 16:15:45.369 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Files - null null
+2026-04-22 16:15:45.373 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 16:15:45.374 +05:30 [INF] Route matched with {action = "Index", controller = "Files"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.FilesController (FileVaultAdmin).
+2026-04-22 16:15:45.443 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:15:45.445 +05:30 [INF] Executed ViewResult - view Index executed in 2.2402ms.
+2026-04-22 16:15:45.446 +05:30 [INF] Executed action FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin) in 70.5786ms
+2026-04-22 16:15:45.448 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 16:15:45.449 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Files - 200 null text/html; charset=utf-8 79.9833ms
+2026-04-22 16:15:45.467 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:15:45.469 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:15:45.472 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 2.7433ms
+2026-04-22 16:15:45.473 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 6.2089ms
+2026-04-22 16:15:50.237 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Files?search=&owner= - null null
+2026-04-22 16:15:50.241 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 16:15:50.242 +05:30 [INF] Route matched with {action = "Index", controller = "Files"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.FilesController (FileVaultAdmin).
+2026-04-22 16:15:50.250 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:15:50.296 +05:30 [INF] Executed ViewResult - view Index executed in 46.0189ms.
+2026-04-22 16:15:50.298 +05:30 [INF] Executed action FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin) in 54.521ms
+2026-04-22 16:15:50.300 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 16:15:50.301 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Files?search=&owner= - 200 null text/html; charset=utf-8 64.4256ms
+2026-04-22 16:15:50.317 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:15:50.317 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:15:50.320 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 3.1976ms
+2026-04-22 16:15:50.326 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 8.7652ms
+2026-04-22 16:15:53.945 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Users - null null
+2026-04-22 16:15:53.950 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin)'
+2026-04-22 16:15:53.952 +05:30 [INF] Route matched with {action = "Index", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String, System.String) on controller FileVaultAdmin.Controllers.UsersController (FileVaultAdmin).
+2026-04-22 16:15:53.957 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:15:53.960 +05:30 [INF] Executed ViewResult - view Index executed in 3.2228ms.
+2026-04-22 16:15:53.962 +05:30 [INF] Executed action FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin) in 8.197ms
+2026-04-22 16:15:53.964 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin)'
+2026-04-22 16:15:53.965 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Users - 200 null text/html; charset=utf-8 20.2959ms
+2026-04-22 16:15:53.979 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:15:53.979 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:15:53.982 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 3.5709ms
+2026-04-22 16:15:53.989 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 10.4832ms
+2026-04-22 16:15:57.795 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Shares - null null
+2026-04-22 16:15:57.801 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin)'
+2026-04-22 16:15:57.803 +05:30 [INF] Route matched with {action = "Index", controller = "Shares"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller FileVaultAdmin.Controllers.SharesController (FileVaultAdmin).
+2026-04-22 16:15:57.810 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:15:57.813 +05:30 [INF] Executed ViewResult - view Index executed in 2.8778ms.
+2026-04-22 16:15:57.815 +05:30 [INF] Executed action FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin) in 9.385ms
+2026-04-22 16:15:57.816 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin)'
+2026-04-22 16:15:57.817 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Shares - 200 null text/html; charset=utf-8 21.7582ms
+2026-04-22 16:15:57.834 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:15:57.834 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:15:57.838 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 3.6469ms
+2026-04-22 16:15:57.892 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 57.9443ms
+2026-04-22 16:15:58.384 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Files - null null
+2026-04-22 16:15:58.389 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 16:15:58.391 +05:30 [INF] Route matched with {action = "Index", controller = "Files"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.FilesController (FileVaultAdmin).
+2026-04-22 16:15:58.397 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:15:58.399 +05:30 [INF] Executed ViewResult - view Index executed in 2.2579ms.
+2026-04-22 16:15:58.401 +05:30 [INF] Executed action FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin) in 8.6412ms
+2026-04-22 16:15:58.403 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 16:15:58.404 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Files - 200 null text/html; charset=utf-8 19.5104ms
+2026-04-22 16:15:58.418 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:15:58.422 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:15:58.426 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 8.2732ms
+2026-04-22 16:15:58.426 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 4.9421ms
+2026-04-22 16:15:59.427 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Shares - null null
+2026-04-22 16:15:59.432 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin)'
+2026-04-22 16:15:59.434 +05:30 [INF] Route matched with {action = "Index", controller = "Shares"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller FileVaultAdmin.Controllers.SharesController (FileVaultAdmin).
+2026-04-22 16:15:59.439 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:15:59.441 +05:30 [INF] Executed ViewResult - view Index executed in 1.914ms.
+2026-04-22 16:15:59.443 +05:30 [INF] Executed action FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin) in 7.4197ms
+2026-04-22 16:15:59.445 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin)'
+2026-04-22 16:15:59.446 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Shares - 200 null text/html; charset=utf-8 19.3207ms
+2026-04-22 16:15:59.459 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:15:59.459 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:15:59.463 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 3.8284ms
+2026-04-22 16:15:59.469 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 10.1416ms
+2026-04-22 16:16:04.322 +05:30 [INF] Request starting HTTP/2 POST https://localhost:51370/Shares/Revoke - application/x-www-form-urlencoded 253
+2026-04-22 16:16:04.329 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.SharesController.Revoke (FileVaultAdmin)'
+2026-04-22 16:16:04.341 +05:30 [INF] Route matched with {action = "Revoke", controller = "Shares"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Revoke(System.String) on controller FileVaultAdmin.Controllers.SharesController (FileVaultAdmin).
+2026-04-22 16:16:04.578 +05:30 [INF] Executing RedirectResult, redirecting to /Shares.
+2026-04-22 16:16:04.586 +05:30 [INF] Executed action FileVaultAdmin.Controllers.SharesController.Revoke (FileVaultAdmin) in 242.8324ms
+2026-04-22 16:16:04.587 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.SharesController.Revoke (FileVaultAdmin)'
+2026-04-22 16:16:04.588 +05:30 [INF] Request finished HTTP/2 POST https://localhost:51370/Shares/Revoke - 302 0 null 266.0163ms
+2026-04-22 16:16:04.594 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Shares - null null
+2026-04-22 16:16:04.597 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin)'
+2026-04-22 16:16:04.598 +05:30 [INF] Route matched with {action = "Index", controller = "Shares"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller FileVaultAdmin.Controllers.SharesController (FileVaultAdmin).
+2026-04-22 16:16:04.602 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:16:04.608 +05:30 [INF] Executed ViewResult - view Index executed in 5.2172ms.
+2026-04-22 16:16:04.609 +05:30 [INF] Executed action FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin) in 10.4292ms
+2026-04-22 16:16:04.611 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin)'
+2026-04-22 16:16:04.612 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Shares - 200 null text/html; charset=utf-8 17.8292ms
+2026-04-22 16:16:04.631 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:16:04.635 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:16:04.640 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 4.2375ms
+2026-04-22 16:16:04.717 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 86.7216ms
+2026-04-22 16:16:15.115 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/AuditLogs - null null
+2026-04-22 16:16:15.121 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 16:16:15.122 +05:30 [INF] Route matched with {action = "Index", controller = "AuditLogs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.AuditLogsController (FileVaultAdmin).
+2026-04-22 16:16:15.126 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:16:15.128 +05:30 [INF] Executed ViewResult - view Index executed in 1.8977ms.
+2026-04-22 16:16:15.130 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin) in 5.9742ms
+2026-04-22 16:16:15.131 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 16:16:15.133 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/AuditLogs - 200 null text/html; charset=utf-8 18.0319ms
+2026-04-22 16:16:15.149 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:16:15.149 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:16:15.152 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 2.9578ms
+2026-04-22 16:16:15.160 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 10.9431ms
+2026-04-22 16:16:21.480 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 16:16:21.484 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 16:16:21.486 +05:30 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller FileVaultAdmin.Controllers.HomeController (FileVaultAdmin).
+2026-04-22 16:16:21.528 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:16:21.533 +05:30 [INF] Executed ViewResult - view Index executed in 4.8513ms.
+2026-04-22 16:16:21.535 +05:30 [INF] Executed action FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin) in 47.4752ms
+2026-04-22 16:16:21.536 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 16:16:21.537 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 200 null text/html; charset=utf-8 57.2819ms
+2026-04-22 16:16:21.551 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:16:21.551 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:16:21.554 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 2.9597ms
+2026-04-22 16:16:21.559 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 8.0689ms
+2026-04-22 16:16:29.404 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Files - null null
+2026-04-22 16:16:29.408 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 16:16:29.409 +05:30 [INF] Route matched with {action = "Index", controller = "Files"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.FilesController (FileVaultAdmin).
+2026-04-22 16:16:29.416 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:16:29.418 +05:30 [INF] Executed ViewResult - view Index executed in 1.9026ms.
+2026-04-22 16:16:29.419 +05:30 [INF] Executed action FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin) in 8.1624ms
+2026-04-22 16:16:29.421 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 16:16:29.422 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Files - 200 null text/html; charset=utf-8 18.4301ms
+2026-04-22 16:16:29.437 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:16:29.437 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:16:29.439 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 2.5931ms
+2026-04-22 16:16:29.445 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 7.8733ms
+2026-04-22 16:16:36.762 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 16:16:36.766 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 16:16:36.767 +05:30 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller FileVaultAdmin.Controllers.HomeController (FileVaultAdmin).
+2026-04-22 16:16:36.785 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:16:36.787 +05:30 [INF] Executed ViewResult - view Index executed in 2.2892ms.
+2026-04-22 16:16:36.789 +05:30 [INF] Executed action FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin) in 19.9655ms
+2026-04-22 16:16:36.790 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 16:16:36.791 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 200 null text/html; charset=utf-8 28.383ms
+2026-04-22 16:16:36.806 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:16:36.806 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:16:36.811 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 4.9007ms
+2026-04-22 16:16:36.815 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 9.4746ms
+2026-04-22 16:16:59.312 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Shares - null null
+2026-04-22 16:16:59.348 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin)'
+2026-04-22 16:16:59.349 +05:30 [INF] Route matched with {action = "Index", controller = "Shares"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller FileVaultAdmin.Controllers.SharesController (FileVaultAdmin).
+2026-04-22 16:16:59.365 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:16:59.368 +05:30 [INF] Executed ViewResult - view Index executed in 2.91ms.
+2026-04-22 16:16:59.382 +05:30 [INF] Executed action FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin) in 31.6827ms
+2026-04-22 16:16:59.384 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin)'
+2026-04-22 16:16:59.385 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Shares - 200 null text/html; charset=utf-8 72.7174ms
+2026-04-22 16:16:59.390 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:16:59.393 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:16:59.396 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 2.8184ms
+2026-04-22 16:16:59.436 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 6.9073ms
+2026-04-22 16:17:00.257 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Files - null null
+2026-04-22 16:17:00.261 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 16:17:00.262 +05:30 [INF] Route matched with {action = "Index", controller = "Files"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.FilesController (FileVaultAdmin).
+2026-04-22 16:17:00.268 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:17:00.270 +05:30 [INF] Executed ViewResult - view Index executed in 2.1693ms.
+2026-04-22 16:17:00.272 +05:30 [INF] Executed action FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin) in 8.0421ms
+2026-04-22 16:17:00.273 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 16:17:00.274 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Files - 200 null text/html; charset=utf-8 17.0289ms
+2026-04-22 16:17:00.288 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:17:00.288 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:17:00.293 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 4.3283ms
+2026-04-22 16:17:00.294 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 5.4068ms
+2026-04-22 16:17:07.433 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 16:17:07.436 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 16:17:07.437 +05:30 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller FileVaultAdmin.Controllers.HomeController (FileVaultAdmin).
+2026-04-22 16:17:07.458 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:17:07.459 +05:30 [INF] Executed ViewResult - view Index executed in 1.7153ms.
+2026-04-22 16:17:07.461 +05:30 [INF] Executed action FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin) in 22.1488ms
+2026-04-22 16:17:07.463 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 16:17:07.465 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 200 null text/html; charset=utf-8 32.3153ms
+2026-04-22 16:17:07.480 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:17:07.480 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:17:07.483 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 2.745ms
+2026-04-22 16:17:07.490 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 9.2201ms
+2026-04-22 16:17:10.784 +05:30 [INF] Request starting HTTP/2 POST https://localhost:51370/Auth/Logout - application/x-www-form-urlencoded 225
+2026-04-22 16:17:10.787 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuthController.Logout (FileVaultAdmin)'
+2026-04-22 16:17:10.790 +05:30 [INF] Route matched with {action = "Logout", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Logout() on controller FileVaultAdmin.Controllers.AuthController (FileVaultAdmin).
+2026-04-22 16:17:10.799 +05:30 [INF] AuthenticationScheme: Cookies signed out.
+2026-04-22 16:17:10.800 +05:30 [INF] Executing RedirectResult, redirecting to /Auth/Login.
+2026-04-22 16:17:10.801 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuthController.Logout (FileVaultAdmin) in 7.2597ms
+2026-04-22 16:17:10.801 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuthController.Logout (FileVaultAdmin)'
+2026-04-22 16:17:10.802 +05:30 [INF] Request finished HTTP/2 POST https://localhost:51370/Auth/Logout - 302 0 null 18.6243ms
+2026-04-22 16:17:10.804 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Auth/Login - null null
+2026-04-22 16:17:10.808 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 16:17:10.809 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller FileVaultAdmin.Controllers.AuthController (FileVaultAdmin).
+2026-04-22 16:17:10.811 +05:30 [INF] Executing ViewResult, running view Login.
+2026-04-22 16:17:10.824 +05:30 [INF] Executed ViewResult - view Login executed in 13.0801ms.
+2026-04-22 16:17:10.826 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin) in 15.4228ms
+2026-04-22 16:17:10.828 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 16:17:10.829 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Auth/Login - 200 null text/html; charset=utf-8 25.2015ms
+2026-04-22 16:17:10.846 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:17:10.846 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:17:10.853 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 6.8606ms
+2026-04-22 16:17:10.853 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 7.1027ms
+2026-04-22 16:17:12.852 +05:30 [INF] Request starting HTTP/2 POST https://localhost:51370/Auth/Login - application/x-www-form-urlencoded 250
+2026-04-22 16:17:12.856 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 16:17:12.857 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(FileVaultAdmin.Models.ViewModels.LoginViewModel) on controller FileVaultAdmin.Controllers.AuthController (FileVaultAdmin).
+2026-04-22 16:17:13.000 +05:30 [INF] AuthenticationScheme: Cookies signed in.
+2026-04-22 16:17:13.010 +05:30 [INF] Executing RedirectResult, redirecting to /.
+2026-04-22 16:17:13.011 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin) in 152.7982ms
+2026-04-22 16:17:13.012 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 16:17:13.013 +05:30 [INF] Request finished HTTP/2 POST https://localhost:51370/Auth/Login - 302 0 null 160.9ms
+2026-04-22 16:17:13.015 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 16:17:13.017 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 16:17:13.018 +05:30 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller FileVaultAdmin.Controllers.HomeController (FileVaultAdmin).
+2026-04-22 16:17:13.030 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:17:13.033 +05:30 [INF] Executed ViewResult - view Index executed in 2.5866ms.
+2026-04-22 16:17:13.034 +05:30 [INF] Executed action FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin) in 15.3765ms
+2026-04-22 16:17:13.035 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 16:17:13.036 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 200 null text/html; charset=utf-8 21.3392ms
+2026-04-22 16:17:13.051 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:17:13.051 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:17:13.056 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 4.5697ms
+2026-04-22 16:17:13.057 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 6.2992ms
+2026-04-22 16:17:23.819 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/AuditLogs - null null
+2026-04-22 16:17:23.825 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 16:17:23.827 +05:30 [INF] Route matched with {action = "Index", controller = "AuditLogs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.AuditLogsController (FileVaultAdmin).
+2026-04-22 16:17:23.831 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:17:23.833 +05:30 [INF] Executed ViewResult - view Index executed in 1.5393ms.
+2026-04-22 16:17:23.834 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin) in 6.0231ms
+2026-04-22 16:17:23.836 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 16:17:23.837 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/AuditLogs - 200 null text/html; charset=utf-8 18.126ms
+2026-04-22 16:17:23.853 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:17:23.853 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:17:23.858 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 5.2039ms
+2026-04-22 16:17:23.870 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 17.0493ms
+2026-04-22 16:17:28.943 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/AuditLogs?action=&user= - null null
+2026-04-22 16:17:28.947 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 16:17:28.948 +05:30 [INF] Route matched with {action = "Index", controller = "AuditLogs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.AuditLogsController (FileVaultAdmin).
+2026-04-22 16:17:28.953 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:17:28.955 +05:30 [INF] Executed ViewResult - view Index executed in 2.2397ms.
+2026-04-22 16:17:28.957 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin) in 7.5988ms
+2026-04-22 16:17:28.959 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 16:17:28.961 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/AuditLogs?action=&user= - 200 null text/html; charset=utf-8 17.9114ms
+2026-04-22 16:17:28.975 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:17:28.976 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:17:28.984 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 7.5101ms
+2026-04-22 16:17:28.991 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 15.3507ms
+2026-04-22 16:17:46.536 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/AuditLogs?action=File&user= - null null
+2026-04-22 16:17:46.541 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 16:17:46.543 +05:30 [INF] Route matched with {action = "Index", controller = "AuditLogs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.AuditLogsController (FileVaultAdmin).
+2026-04-22 16:17:46.550 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 16:17:46.553 +05:30 [INF] Executed ViewResult - view Index executed in 2.4385ms.
+2026-04-22 16:17:46.554 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin) in 7.7946ms
+2026-04-22 16:17:46.555 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 16:17:46.556 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/AuditLogs?action=File&user= - 200 null text/html; charset=utf-8 20.1894ms
+2026-04-22 16:17:46.578 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:17:46.579 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:17:46.581 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 3.251ms
+2026-04-22 16:17:46.586 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 7.3262ms
+2026-04-22 16:17:51.184 +05:30 [INF] Request starting HTTP/2 POST https://localhost:51370/Auth/Logout - application/x-www-form-urlencoded 225
+2026-04-22 16:17:51.188 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuthController.Logout (FileVaultAdmin)'
+2026-04-22 16:17:51.189 +05:30 [INF] Route matched with {action = "Logout", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Logout() on controller FileVaultAdmin.Controllers.AuthController (FileVaultAdmin).
+2026-04-22 16:17:51.192 +05:30 [INF] AuthenticationScheme: Cookies signed out.
+2026-04-22 16:17:51.194 +05:30 [INF] Executing RedirectResult, redirecting to /Auth/Login.
+2026-04-22 16:17:51.195 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuthController.Logout (FileVaultAdmin) in 3.8545ms
+2026-04-22 16:17:51.196 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuthController.Logout (FileVaultAdmin)'
+2026-04-22 16:17:51.197 +05:30 [INF] Request finished HTTP/2 POST https://localhost:51370/Auth/Logout - 302 0 null 12.1261ms
+2026-04-22 16:17:51.199 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Auth/Login - null null
+2026-04-22 16:17:51.201 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 16:17:51.202 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller FileVaultAdmin.Controllers.AuthController (FileVaultAdmin).
+2026-04-22 16:17:51.203 +05:30 [INF] Executing ViewResult, running view Login.
+2026-04-22 16:17:51.205 +05:30 [INF] Executed ViewResult - view Login executed in 1.9175ms.
+2026-04-22 16:17:51.206 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin) in 3.2104ms
+2026-04-22 16:17:51.208 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 16:17:51.209 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Auth/Login - 200 null text/html; charset=utf-8 10.743ms
+2026-04-22 16:17:51.225 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 16:17:51.225 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 16:17:51.229 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 3.3696ms
+2026-04-22 16:17:51.234 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 8.6537ms
+2026-04-22 21:06:09.331 +05:30 [INF] FileVault Admin Panel starting on https://localhost:5003
+2026-04-22 21:06:09.591 +05:30 [INF] User profile is available. Using 'C:\Users\Lenovo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-22 21:06:10.169 +05:30 [INF] Now listening on: https://localhost:51370
+2026-04-22 21:06:10.171 +05:30 [INF] Now listening on: http://localhost:51371
+2026-04-22 21:06:10.234 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-22 21:06:10.236 +05:30 [INF] Hosting environment: Development
+2026-04-22 21:06:10.238 +05:30 [INF] Content root path: F:\Antigravity Files\FileVaultAdmin
+2026-04-22 21:06:12.429 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 21:06:12.815 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-22 21:06:12.837 +05:30 [INF] AuthenticationScheme: Cookies was challenged.
+2026-04-22 21:06:12.846 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 302 0 null 430.2534ms
+2026-04-22 21:06:12.864 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Auth/Login?ReturnUrl=%2F - null null
+2026-04-22 21:06:12.894 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 21:06:12.952 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller FileVaultAdmin.Controllers.AuthController (FileVaultAdmin).
+2026-04-22 21:06:13.827 +05:30 [INF] Executing ViewResult, running view Login.
+2026-04-22 21:06:14.164 +05:30 [INF] Executed ViewResult - view Login executed in 346.2692ms.
+2026-04-22 21:06:14.170 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin) in 1214.1287ms
+2026-04-22 21:06:14.174 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 21:06:14.180 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Auth/Login?ReturnUrl=%2F - 200 null text/html; charset=utf-8 1316.4321ms
+2026-04-22 21:06:14.196 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:06:14.197 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/css/admin.css - null null
+2026-04-22 21:06:14.197 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:06:14.226 +05:30 [INF] The file /css/admin.css was not modified
+2026-04-22 21:06:14.226 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 30.1415ms
+2026-04-22 21:06:14.231 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/css/admin.css - 304 null text/css 33.8999ms
+2026-04-22 21:06:14.407 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 210.1039ms
+2026-04-22 21:06:14.453 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/favicon.ico - null null
+2026-04-22 21:06:14.466 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/favicon.ico - 404 0 null 12.5332ms
+2026-04-22 21:06:14.473 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:51370/favicon.ico, Response status code: 404
+2026-04-22 21:06:16.237 +05:30 [INF] Request starting HTTP/2 POST https://localhost:51370/Auth/Login - application/x-www-form-urlencoded 250
+2026-04-22 21:06:16.246 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 21:06:16.278 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(FileVaultAdmin.Models.ViewModels.LoginViewModel) on controller FileVaultAdmin.Controllers.AuthController (FileVaultAdmin).
+2026-04-22 21:06:18.037 +05:30 [INF] AuthenticationScheme: Cookies signed in.
+2026-04-22 21:06:18.252 +05:30 [INF] Executing RedirectResult, redirecting to /.
+2026-04-22 21:06:18.257 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin) in 1970.7311ms
+2026-04-22 21:06:18.262 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 21:06:18.268 +05:30 [INF] Request finished HTTP/2 POST https://localhost:51370/Auth/Login - 302 0 null 2031.064ms
+2026-04-22 21:06:18.274 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 21:06:18.290 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 21:06:18.299 +05:30 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller FileVaultAdmin.Controllers.HomeController (FileVaultAdmin).
+2026-04-22 21:06:18.671 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:06:18.779 +05:30 [INF] Executed ViewResult - view Index executed in 109.8289ms.
+2026-04-22 21:06:18.787 +05:30 [INF] Executed action FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin) in 482.4197ms
+2026-04-22 21:06:18.795 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 21:06:18.799 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 200 null text/html; charset=utf-8 525.3783ms
+2026-04-22 21:06:18.807 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:06:18.808 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:06:18.810 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/js/admin.js - null null
+2026-04-22 21:06:18.827 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 20.7404ms
+2026-04-22 21:06:18.844 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 36.2139ms
+2026-04-22 21:06:18.842 +05:30 [INF] The file /js/admin.js was not modified
+2026-04-22 21:06:18.872 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/js/admin.js - 304 null text/javascript 62.6039ms
+2026-04-22 21:06:30.576 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Users - null null
+2026-04-22 21:06:30.588 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin)'
+2026-04-22 21:06:30.598 +05:30 [INF] Route matched with {action = "Index", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String, System.String) on controller FileVaultAdmin.Controllers.UsersController (FileVaultAdmin).
+2026-04-22 21:06:30.612 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:06:30.652 +05:30 [INF] Executed ViewResult - view Index executed in 40.373ms.
+2026-04-22 21:06:30.656 +05:30 [INF] Executed action FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin) in 54.3689ms
+2026-04-22 21:06:30.658 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin)'
+2026-04-22 21:06:30.661 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Users - 200 null text/html; charset=utf-8 84.7026ms
+2026-04-22 21:06:30.686 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:06:30.697 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:06:30.707 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 9.3642ms
+2026-04-22 21:06:30.708 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 22.2435ms
+2026-04-22 21:06:41.019 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Files - null null
+2026-04-22 21:06:41.025 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 21:06:41.033 +05:30 [INF] Route matched with {action = "Index", controller = "Files"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.FilesController (FileVaultAdmin).
+2026-04-22 21:06:41.074 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:06:41.099 +05:30 [INF] Executed ViewResult - view Index executed in 26.4869ms.
+2026-04-22 21:06:41.105 +05:30 [INF] Executed action FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin) in 68.1844ms
+2026-04-22 21:06:41.111 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 21:06:41.119 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Files - 200 null text/html; charset=utf-8 100.0862ms
+2026-04-22 21:06:41.149 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:06:41.158 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:06:41.175 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 16.6353ms
+2026-04-22 21:06:41.176 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 27.0316ms
+2026-04-22 21:06:50.809 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Shares - null null
+2026-04-22 21:06:50.816 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin)'
+2026-04-22 21:06:50.823 +05:30 [INF] Route matched with {action = "Index", controller = "Shares"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller FileVaultAdmin.Controllers.SharesController (FileVaultAdmin).
+2026-04-22 21:06:50.857 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:06:50.881 +05:30 [INF] Executed ViewResult - view Index executed in 26.0842ms.
+2026-04-22 21:06:50.888 +05:30 [INF] Executed action FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin) in 61.4699ms
+2026-04-22 21:06:50.896 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin)'
+2026-04-22 21:06:50.909 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Shares - 200 null text/html; charset=utf-8 99.9413ms
+2026-04-22 21:06:50.938 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:06:50.947 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:06:50.965 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 26.9257ms
+2026-04-22 21:06:50.967 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 20.1146ms
+2026-04-22 21:06:53.584 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Files - null null
+2026-04-22 21:06:53.590 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 21:06:53.592 +05:30 [INF] Route matched with {action = "Index", controller = "Files"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.FilesController (FileVaultAdmin).
+2026-04-22 21:06:53.601 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:06:53.606 +05:30 [INF] Executed ViewResult - view Index executed in 4.2653ms.
+2026-04-22 21:06:53.608 +05:30 [INF] Executed action FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin) in 11.7724ms
+2026-04-22 21:06:53.611 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 21:06:53.614 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Files - 200 null text/html; charset=utf-8 30.4074ms
+2026-04-22 21:06:53.636 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:06:53.644 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:06:53.655 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 10.9353ms
+2026-04-22 21:06:53.656 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 20.6227ms
+2026-04-22 21:06:54.160 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Users - null null
+2026-04-22 21:06:54.167 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin)'
+2026-04-22 21:06:54.169 +05:30 [INF] Route matched with {action = "Index", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String, System.String) on controller FileVaultAdmin.Controllers.UsersController (FileVaultAdmin).
+2026-04-22 21:06:54.178 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:06:54.182 +05:30 [INF] Executed ViewResult - view Index executed in 4.6456ms.
+2026-04-22 21:06:54.185 +05:30 [INF] Executed action FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin) in 12.897ms
+2026-04-22 21:06:54.187 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin)'
+2026-04-22 21:06:54.190 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Users - 200 null text/html; charset=utf-8 29.5844ms
+2026-04-22 21:06:54.209 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:06:54.209 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:06:54.214 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 5.1044ms
+2026-04-22 21:06:54.222 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 13.0818ms
+2026-04-22 21:06:56.536 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 21:06:56.543 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 21:06:56.545 +05:30 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller FileVaultAdmin.Controllers.HomeController (FileVaultAdmin).
+2026-04-22 21:06:56.579 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:06:56.584 +05:30 [INF] Executed ViewResult - view Index executed in 5.2862ms.
+2026-04-22 21:06:56.589 +05:30 [INF] Executed action FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin) in 40.4974ms
+2026-04-22 21:06:56.594 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 21:06:56.603 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 200 null text/html; charset=utf-8 67.1832ms
+2026-04-22 21:06:56.653 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:06:56.653 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:06:56.668 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 15.1489ms
+2026-04-22 21:06:56.704 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 51.2286ms
+2026-04-22 21:07:14.552 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/AuditLogs - null null
+2026-04-22 21:07:14.559 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 21:07:14.568 +05:30 [INF] Route matched with {action = "Index", controller = "AuditLogs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.AuditLogsController (FileVaultAdmin).
+2026-04-22 21:07:14.621 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:07:14.638 +05:30 [INF] Executed ViewResult - view Index executed in 18.1845ms.
+2026-04-22 21:07:14.642 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin) in 70.4913ms
+2026-04-22 21:07:14.646 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 21:07:14.654 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/AuditLogs - 200 null text/html; charset=utf-8 102.1516ms
+2026-04-22 21:07:14.678 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:07:14.686 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:07:14.693 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 7.7919ms
+2026-04-22 21:07:14.694 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 15.8582ms
+2026-04-22 21:07:17.418 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/AuditLogs - null null
+2026-04-22 21:07:17.425 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 21:07:17.428 +05:30 [INF] Route matched with {action = "Index", controller = "AuditLogs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.AuditLogsController (FileVaultAdmin).
+2026-04-22 21:07:17.435 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:07:17.440 +05:30 [INF] Executed ViewResult - view Index executed in 4.2978ms.
+2026-04-22 21:07:17.442 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin) in 11.1746ms
+2026-04-22 21:07:17.445 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 21:07:17.448 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/AuditLogs - 200 null text/html; charset=utf-8 29.8835ms
+2026-04-22 21:07:17.464 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:07:17.464 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:07:17.470 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 5.3451ms
+2026-04-22 21:07:17.478 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 13.7534ms
+2026-04-22 21:07:19.697 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 21:07:19.703 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 21:07:19.705 +05:30 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller FileVaultAdmin.Controllers.HomeController (FileVaultAdmin).
+2026-04-22 21:07:19.733 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:07:19.740 +05:30 [INF] Executed ViewResult - view Index executed in 6.0992ms.
+2026-04-22 21:07:19.743 +05:30 [INF] Executed action FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin) in 34.5289ms
+2026-04-22 21:07:19.752 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 21:07:19.754 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 200 null text/html; charset=utf-8 57.2555ms
+2026-04-22 21:07:19.771 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:07:19.775 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:07:19.783 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 8.0651ms
+2026-04-22 21:07:19.785 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 14.0704ms
+2026-04-22 21:07:20.281 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Users - null null
+2026-04-22 21:07:20.287 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin)'
+2026-04-22 21:07:20.289 +05:30 [INF] Route matched with {action = "Index", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String, System.String) on controller FileVaultAdmin.Controllers.UsersController (FileVaultAdmin).
+2026-04-22 21:07:20.296 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:07:20.301 +05:30 [INF] Executed ViewResult - view Index executed in 5.0596ms.
+2026-04-22 21:07:20.304 +05:30 [INF] Executed action FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin) in 11.0955ms
+2026-04-22 21:07:20.306 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin)'
+2026-04-22 21:07:20.308 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Users - 200 null text/html; charset=utf-8 27.4713ms
+2026-04-22 21:07:20.331 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:07:20.332 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:07:20.344 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 12.3628ms
+2026-04-22 21:07:20.345 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 14.8036ms
+2026-04-22 21:07:23.624 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Files - null null
+2026-04-22 21:07:23.630 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 21:07:23.633 +05:30 [INF] Route matched with {action = "Index", controller = "Files"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.FilesController (FileVaultAdmin).
+2026-04-22 21:07:23.642 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:07:23.647 +05:30 [INF] Executed ViewResult - view Index executed in 4.7246ms.
+2026-04-22 21:07:23.650 +05:30 [INF] Executed action FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin) in 13.1419ms
+2026-04-22 21:07:23.653 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 21:07:23.655 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Files - 200 null text/html; charset=utf-8 30.9217ms
+2026-04-22 21:07:23.672 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:07:23.672 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:07:23.684 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 11.7458ms
+2026-04-22 21:07:23.691 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 19.3322ms
+2026-04-22 21:07:24.241 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Users - null null
+2026-04-22 21:07:24.247 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin)'
+2026-04-22 21:07:24.249 +05:30 [INF] Route matched with {action = "Index", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String, System.String) on controller FileVaultAdmin.Controllers.UsersController (FileVaultAdmin).
+2026-04-22 21:07:24.256 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:07:24.260 +05:30 [INF] Executed ViewResult - view Index executed in 4.0294ms.
+2026-04-22 21:07:24.262 +05:30 [INF] Executed action FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin) in 9.4037ms
+2026-04-22 21:07:24.265 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin)'
+2026-04-22 21:07:24.267 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Users - 200 null text/html; charset=utf-8 25.7541ms
+2026-04-22 21:07:24.285 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:07:24.290 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:07:24.296 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 10.3212ms
+2026-04-22 21:07:24.297 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 7.8168ms
+2026-04-22 21:07:24.791 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 21:07:24.798 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 21:07:24.800 +05:30 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller FileVaultAdmin.Controllers.HomeController (FileVaultAdmin).
+2026-04-22 21:07:24.833 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:07:24.838 +05:30 [INF] Executed ViewResult - view Index executed in 5.2464ms.
+2026-04-22 21:07:24.842 +05:30 [INF] Executed action FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin) in 38.2722ms
+2026-04-22 21:07:24.851 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 21:07:24.857 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 200 null text/html; charset=utf-8 65.5083ms
+2026-04-22 21:07:24.893 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:07:24.904 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:07:24.917 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 23.5791ms
+2026-04-22 21:07:24.920 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 15.6096ms
+2026-04-22 21:09:53.152 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/AuditLogs - null null
+2026-04-22 21:09:53.237 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 21:09:53.240 +05:30 [INF] Route matched with {action = "Index", controller = "AuditLogs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.AuditLogsController (FileVaultAdmin).
+2026-04-22 21:09:53.259 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:09:53.270 +05:30 [INF] Executed ViewResult - view Index executed in 10.4982ms.
+2026-04-22 21:09:53.343 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:09:53.344 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:09:53.347 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin) in 96.5518ms
+2026-04-22 21:09:53.365 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 10.867ms
+2026-04-22 21:09:53.375 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 21:09:53.452 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 108.6403ms
+2026-04-22 21:09:53.453 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/AuditLogs - 200 null text/html; charset=utf-8 301.7852ms
+2026-04-22 21:09:57.672 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 21:09:57.677 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 21:09:57.679 +05:30 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller FileVaultAdmin.Controllers.HomeController (FileVaultAdmin).
+2026-04-22 21:09:57.706 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:09:57.711 +05:30 [INF] Executed ViewResult - view Index executed in 4.8194ms.
+2026-04-22 21:09:57.714 +05:30 [INF] Executed action FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin) in 31.2807ms
+2026-04-22 21:09:57.718 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 21:09:57.720 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 200 null text/html; charset=utf-8 49.015ms
+2026-04-22 21:09:57.747 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:09:57.754 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 6.1716ms
+2026-04-22 21:10:01.333 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/AuditLogs - null null
+2026-04-22 21:10:01.339 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 21:10:01.341 +05:30 [INF] Route matched with {action = "Index", controller = "AuditLogs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.AuditLogsController (FileVaultAdmin).
+2026-04-22 21:10:01.355 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:10:01.361 +05:30 [INF] Executed ViewResult - view Index executed in 5.7513ms.
+2026-04-22 21:10:01.363 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin) in 11.3222ms
+2026-04-22 21:10:01.365 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 21:10:01.369 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/AuditLogs - 200 null text/html; charset=utf-8 35.837ms
+2026-04-22 21:10:01.402 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:10:01.402 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:10:01.412 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 10.5094ms
+2026-04-22 21:10:01.417 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 15.1546ms
+2026-04-22 21:10:03.586 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/AuditLogs?action=Index&user=admin%40filevault.local - null null
+2026-04-22 21:10:03.593 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 21:10:03.595 +05:30 [INF] Route matched with {action = "Index", controller = "AuditLogs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.AuditLogsController (FileVaultAdmin).
+2026-04-22 21:10:03.623 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:10:03.627 +05:30 [INF] Executed ViewResult - view Index executed in 4.5175ms.
+2026-04-22 21:10:03.631 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin) in 32.3471ms
+2026-04-22 21:10:03.636 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 21:10:03.646 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/AuditLogs?action=Index&user=admin%40filevault.local - 200 null text/html; charset=utf-8 60.5856ms
+2026-04-22 21:10:03.693 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:10:03.693 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:10:03.705 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 12.4376ms
+2026-04-22 21:10:03.764 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 71.0605ms
+2026-04-22 21:10:05.184 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/AuditLogs?action=Index&user=admin%40filevault.local - null null
+2026-04-22 21:10:05.192 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 21:10:05.194 +05:30 [INF] Route matched with {action = "Index", controller = "AuditLogs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.AuditLogsController (FileVaultAdmin).
+2026-04-22 21:10:05.201 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:10:05.204 +05:30 [INF] Executed ViewResult - view Index executed in 3.651ms.
+2026-04-22 21:10:05.208 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin) in 10.41ms
+2026-04-22 21:10:05.211 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 21:10:05.213 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/AuditLogs?action=Index&user=admin%40filevault.local - 200 null text/html; charset=utf-8 29.1611ms
+2026-04-22 21:10:05.234 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:10:05.234 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:10:05.242 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 7.3154ms
+2026-04-22 21:10:05.252 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 17.305ms
+2026-04-22 21:10:05.852 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/AuditLogs?action=Index&user=admin%40filevault.local - null null
+2026-04-22 21:10:05.859 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 21:10:05.861 +05:30 [INF] Route matched with {action = "Index", controller = "AuditLogs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.AuditLogsController (FileVaultAdmin).
+2026-04-22 21:10:05.868 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:10:05.872 +05:30 [INF] Executed ViewResult - view Index executed in 3.8508ms.
+2026-04-22 21:10:05.875 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin) in 9.9268ms
+2026-04-22 21:10:05.877 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 21:10:05.879 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/AuditLogs?action=Index&user=admin%40filevault.local - 200 null text/html; charset=utf-8 27.3882ms
+2026-04-22 21:10:05.900 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:10:05.900 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:10:05.912 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 11.5899ms
+2026-04-22 21:10:05.931 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 30.7903ms
+2026-04-22 21:10:06.367 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/AuditLogs?action=Index&user=admin%40filevault.local - null null
+2026-04-22 21:10:06.374 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 21:10:06.376 +05:30 [INF] Route matched with {action = "Index", controller = "AuditLogs"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.AuditLogsController (FileVaultAdmin).
+2026-04-22 21:10:06.382 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:10:06.385 +05:30 [INF] Executed ViewResult - view Index executed in 2.9125ms.
+2026-04-22 21:10:06.388 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin) in 8.4994ms
+2026-04-22 21:10:06.391 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuditLogsController.Index (FileVaultAdmin)'
+2026-04-22 21:10:06.399 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/AuditLogs?action=Index&user=admin%40filevault.local - 200 null text/html; charset=utf-8 32.0519ms
+2026-04-22 21:10:06.414 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:10:06.414 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:10:06.424 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 9.1894ms
+2026-04-22 21:10:06.426 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 11.8403ms
+2026-04-22 21:10:07.808 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Shares - null null
+2026-04-22 21:10:07.815 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin)'
+2026-04-22 21:10:07.817 +05:30 [INF] Route matched with {action = "Index", controller = "Shares"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller FileVaultAdmin.Controllers.SharesController (FileVaultAdmin).
+2026-04-22 21:10:07.826 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:10:07.830 +05:30 [INF] Executed ViewResult - view Index executed in 3.3237ms.
+2026-04-22 21:10:07.832 +05:30 [INF] Executed action FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin) in 11.9822ms
+2026-04-22 21:10:07.834 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin)'
+2026-04-22 21:10:07.836 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Shares - 200 null text/html; charset=utf-8 27.8102ms
+2026-04-22 21:10:07.865 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:10:07.865 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:10:07.878 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 11.6754ms
+2026-04-22 21:10:07.897 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 31.5135ms
+2026-04-22 21:10:09.195 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 21:10:09.201 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 21:10:09.204 +05:30 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller FileVaultAdmin.Controllers.HomeController (FileVaultAdmin).
+2026-04-22 21:10:09.234 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:10:09.245 +05:30 [INF] Executed ViewResult - view Index executed in 10.6305ms.
+2026-04-22 21:10:09.248 +05:30 [INF] Executed action FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin) in 40.8762ms
+2026-04-22 21:10:09.250 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 21:10:09.252 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 200 null text/html; charset=utf-8 57.0289ms
+2026-04-22 21:10:09.275 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:10:09.281 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:10:09.287 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 5.8196ms
+2026-04-22 21:10:09.290 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 14.4656ms
+2026-04-22 21:10:15.847 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 21:10:15.853 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 21:10:15.855 +05:30 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller FileVaultAdmin.Controllers.HomeController (FileVaultAdmin).
+2026-04-22 21:10:15.879 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:10:15.885 +05:30 [INF] Executed ViewResult - view Index executed in 5.1052ms.
+2026-04-22 21:10:15.888 +05:30 [INF] Executed action FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin) in 29.0052ms
+2026-04-22 21:10:15.892 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 21:10:15.895 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 200 null text/html; charset=utf-8 47.9593ms
+2026-04-22 21:10:15.929 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:10:15.929 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:10:15.938 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 8.4792ms
+2026-04-22 21:10:15.954 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 24.4058ms
+2026-04-22 21:11:05.710 +05:30 [INF] FileVault Admin Panel starting on https://localhost:5003
+2026-04-22 21:11:05.914 +05:30 [INF] User profile is available. Using 'C:\Users\Lenovo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-22 21:11:06.480 +05:30 [INF] Now listening on: https://localhost:51370
+2026-04-22 21:11:06.485 +05:30 [INF] Now listening on: http://localhost:51371
+2026-04-22 21:11:06.605 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-22 21:11:06.607 +05:30 [INF] Hosting environment: Development
+2026-04-22 21:11:06.608 +05:30 [INF] Content root path: F:\Antigravity Files\FileVaultAdmin
+2026-04-22 21:11:07.947 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 21:11:08.221 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-22 21:11:08.397 +05:30 [INF] AuthenticationScheme: Cookies was challenged.
+2026-04-22 21:11:08.416 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 302 0 null 476.1537ms
+2026-04-22 21:11:08.438 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Auth/Login?ReturnUrl=%2F - null null
+2026-04-22 21:11:08.517 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 21:11:08.569 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller FileVaultAdmin.Controllers.AuthController (FileVaultAdmin).
+2026-04-22 21:11:09.201 +05:30 [INF] Executing ViewResult, running view Login.
+2026-04-22 21:11:09.437 +05:30 [INF] Executed ViewResult - view Login executed in 245.7694ms.
+2026-04-22 21:11:09.446 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin) in 870.7424ms
+2026-04-22 21:11:09.451 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 21:11:09.457 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Auth/Login?ReturnUrl=%2F - 200 null text/html; charset=utf-8 1019.575ms
+2026-04-22 21:11:09.475 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:11:09.478 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:11:09.524 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 49.1957ms
+2026-04-22 21:11:09.565 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 87.8086ms
+2026-04-22 21:11:09.651 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/favicon.ico - null null
+2026-04-22 21:11:09.663 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/favicon.ico - 404 0 null 12.2307ms
+2026-04-22 21:11:09.673 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:51370/favicon.ico, Response status code: 404
+2026-04-22 21:11:11.801 +05:30 [INF] Request starting HTTP/2 POST https://localhost:51370/Auth/Login - application/x-www-form-urlencoded 250
+2026-04-22 21:11:11.811 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 21:11:11.839 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(FileVaultAdmin.Models.ViewModels.LoginViewModel) on controller FileVaultAdmin.Controllers.AuthController (FileVaultAdmin).
+2026-04-22 21:11:13.876 +05:30 [INF] AuthenticationScheme: Cookies signed in.
+2026-04-22 21:11:14.121 +05:30 [INF] Executing RedirectResult, redirecting to /.
+2026-04-22 21:11:14.127 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin) in 2283.175ms
+2026-04-22 21:11:14.132 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 21:11:14.137 +05:30 [INF] Request finished HTTP/2 POST https://localhost:51370/Auth/Login - 302 0 null 2336.2861ms
+2026-04-22 21:11:14.151 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 21:11:14.166 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 21:11:14.175 +05:30 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller FileVaultAdmin.Controllers.HomeController (FileVaultAdmin).
+2026-04-22 21:11:14.385 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:11:14.549 +05:30 [INF] Executed ViewResult - view Index executed in 165.2494ms.
+2026-04-22 21:11:14.561 +05:30 [INF] Executed action FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin) in 380.2998ms
+2026-04-22 21:11:14.567 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 21:11:14.571 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 200 null text/html; charset=utf-8 420.4943ms
+2026-04-22 21:11:14.716 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:11:14.718 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:11:14.730 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 14.6605ms
+2026-04-22 21:11:14.800 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 81.6727ms
+2026-04-22 21:12:54.246 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Users - null null
+2026-04-22 21:12:54.343 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin)'
+2026-04-22 21:12:54.365 +05:30 [INF] Route matched with {action = "Index", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String, System.String) on controller FileVaultAdmin.Controllers.UsersController (FileVaultAdmin).
+2026-04-22 21:12:54.397 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:12:54.524 +05:30 [INF] Executed ViewResult - view Index executed in 129.3068ms.
+2026-04-22 21:12:54.589 +05:30 [INF] Executed action FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin) in 214.4762ms
+2026-04-22 21:12:54.595 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:12:54.595 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:12:54.595 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin)'
+2026-04-22 21:12:54.609 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 14.5258ms
+2026-04-22 21:12:54.636 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Users - 200 null text/html; charset=utf-8 390.2503ms
+2026-04-22 21:12:54.650 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 55.1734ms
+2026-04-22 21:13:04.198 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Files - null null
+2026-04-22 21:13:04.207 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 21:13:04.217 +05:30 [INF] Route matched with {action = "Index", controller = "Files"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.FilesController (FileVaultAdmin).
+2026-04-22 21:13:04.285 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:13:04.305 +05:30 [INF] Executed ViewResult - view Index executed in 20.8693ms.
+2026-04-22 21:13:04.310 +05:30 [INF] Executed action FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin) in 89.864ms
+2026-04-22 21:13:04.314 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 21:13:04.318 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Files - 200 null text/html; charset=utf-8 119.3343ms
+2026-04-22 21:13:04.343 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:13:04.350 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:13:04.367 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 17.0513ms
+2026-04-22 21:13:04.368 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 24.6818ms
+2026-04-22 21:13:06.297 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Shares - null null
+2026-04-22 21:13:06.304 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin)'
+2026-04-22 21:13:06.312 +05:30 [INF] Route matched with {action = "Index", controller = "Shares"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller FileVaultAdmin.Controllers.SharesController (FileVaultAdmin).
+2026-04-22 21:13:06.346 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:13:06.364 +05:30 [INF] Executed ViewResult - view Index executed in 18.6949ms.
+2026-04-22 21:13:06.368 +05:30 [INF] Executed action FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin) in 51.9111ms
+2026-04-22 21:13:06.371 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.SharesController.Index (FileVaultAdmin)'
+2026-04-22 21:13:06.376 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Shares - 200 null text/html; charset=utf-8 79.3333ms
+2026-04-22 21:13:06.403 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:13:06.403 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:13:06.418 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 14.9594ms
+2026-04-22 21:13:06.418 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 15.2087ms
+2026-04-22 21:13:08.695 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Files - null null
+2026-04-22 21:13:08.717 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 21:13:08.720 +05:30 [INF] Route matched with {action = "Index", controller = "Files"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String) on controller FileVaultAdmin.Controllers.FilesController (FileVaultAdmin).
+2026-04-22 21:13:08.737 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:13:08.747 +05:30 [INF] Executed ViewResult - view Index executed in 9.6603ms.
+2026-04-22 21:13:08.771 +05:30 [INF] Executed action FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin) in 45.2492ms
+2026-04-22 21:13:08.780 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.FilesController.Index (FileVaultAdmin)'
+2026-04-22 21:13:08.785 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Files - 200 null text/html; charset=utf-8 89.7726ms
+2026-04-22 21:13:08.788 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:13:08.795 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:13:08.800 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 4.8424ms
+2026-04-22 21:13:08.801 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 12.0579ms
+2026-04-22 21:13:10.048 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Users - null null
+2026-04-22 21:13:10.055 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin)'
+2026-04-22 21:13:10.057 +05:30 [INF] Route matched with {action = "Index", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String, System.String, System.String) on controller FileVaultAdmin.Controllers.UsersController (FileVaultAdmin).
+2026-04-22 21:13:10.065 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:13:10.070 +05:30 [INF] Executed ViewResult - view Index executed in 5.36ms.
+2026-04-22 21:13:10.073 +05:30 [INF] Executed action FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin) in 13.619ms
+2026-04-22 21:13:10.076 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.UsersController.Index (FileVaultAdmin)'
+2026-04-22 21:13:10.080 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Users - 200 null text/html; charset=utf-8 31.1206ms
+2026-04-22 21:13:10.096 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:13:10.099 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:13:10.105 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 5.9879ms
+2026-04-22 21:13:10.106 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 9.7955ms
+2026-04-22 21:14:13.376 +05:30 [INF] FileVault Admin Panel starting on https://localhost:5003
+2026-04-22 21:14:13.649 +05:30 [INF] User profile is available. Using 'C:\Users\Lenovo\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-04-22 21:14:14.105 +05:30 [INF] Now listening on: https://localhost:51370
+2026-04-22 21:14:14.109 +05:30 [INF] Now listening on: http://localhost:51371
+2026-04-22 21:14:14.194 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-22 21:14:14.197 +05:30 [INF] Hosting environment: Development
+2026-04-22 21:14:14.200 +05:30 [INF] Content root path: F:\Antigravity Files\FileVaultAdmin
+2026-04-22 21:14:15.679 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 21:14:15.891 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-04-22 21:14:15.910 +05:30 [INF] AuthenticationScheme: Cookies was challenged.
+2026-04-22 21:14:15.919 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 302 0 null 258.679ms
+2026-04-22 21:14:15.931 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/Auth/Login?ReturnUrl=%2F - null null
+2026-04-22 21:14:15.967 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 21:14:16.024 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller FileVaultAdmin.Controllers.AuthController (FileVaultAdmin).
+2026-04-22 21:14:16.739 +05:30 [INF] Executing ViewResult, running view Login.
+2026-04-22 21:14:17.112 +05:30 [INF] Executed ViewResult - view Login executed in 374.8918ms.
+2026-04-22 21:14:17.120 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin) in 1089.8707ms
+2026-04-22 21:14:17.126 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 21:14:17.138 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/Auth/Login?ReturnUrl=%2F - 200 null text/html; charset=utf-8 1207.4789ms
+2026-04-22 21:14:17.164 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:14:17.164 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:14:17.230 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 66.2879ms
+2026-04-22 21:14:17.298 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 134.1399ms
+2026-04-22 21:14:17.433 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/favicon.ico - null null
+2026-04-22 21:14:17.451 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/favicon.ico - 404 0 null 17.9384ms
+2026-04-22 21:14:17.463 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:51370/favicon.ico, Response status code: 404
+2026-04-22 21:15:09.610 +05:30 [INF] Request starting HTTP/2 POST https://localhost:51370/Auth/Login - application/x-www-form-urlencoded 250
+2026-04-22 21:15:09.628 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 21:15:09.680 +05:30 [INF] Route matched with {action = "Login", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(FileVaultAdmin.Models.ViewModels.LoginViewModel) on controller FileVaultAdmin.Controllers.AuthController (FileVaultAdmin).
+2026-04-22 21:15:12.432 +05:30 [INF] AuthenticationScheme: Cookies signed in.
+2026-04-22 21:15:12.776 +05:30 [INF] Executing RedirectResult, redirecting to /.
+2026-04-22 21:15:12.781 +05:30 [INF] Executed action FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin) in 3092.8202ms
+2026-04-22 21:15:12.785 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.AuthController.Login (FileVaultAdmin)'
+2026-04-22 21:15:12.791 +05:30 [INF] Request finished HTTP/2 POST https://localhost:51370/Auth/Login - 302 0 null 3181.4933ms
+2026-04-22 21:15:12.797 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/ - null null
+2026-04-22 21:15:12.814 +05:30 [INF] Executing endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 21:15:12.823 +05:30 [INF] Route matched with {action = "Index", controller = "Home"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller FileVaultAdmin.Controllers.HomeController (FileVaultAdmin).
+2026-04-22 21:15:13.194 +05:30 [INF] Executing ViewResult, running view Index.
+2026-04-22 21:15:13.408 +05:30 [INF] Executed ViewResult - view Index executed in 217.6983ms.
+2026-04-22 21:15:13.422 +05:30 [INF] Executed action FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin) in 594.9224ms
+2026-04-22 21:15:13.427 +05:30 [INF] Executed endpoint 'FileVaultAdmin.Controllers.HomeController.Index (FileVaultAdmin)'
+2026-04-22 21:15:13.437 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/ - 200 null text/html; charset=utf-8 640.0616ms
+2026-04-22 21:15:13.472 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-22 21:15:13.473 +05:30 [INF] Request starting HTTP/2 GET https://localhost:51370/_vs/browserLink - null null
+2026-04-22 21:15:13.483 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_framework/aspnetcore-browser-refresh.js - 200 16513 application/javascript; charset=utf-8 11.3407ms
+2026-04-22 21:15:13.560 +05:30 [INF] Request finished HTTP/2 GET https://localhost:51370/_vs/browserLink - 200 null text/javascript; charset=UTF-8 86.6972ms
