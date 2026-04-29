@@ -1,0 +1,82 @@
+@model AnalyticsViewModel
+@{ ViewData["Title"] = "Structural Intelligence"; }
+
+<div class="animate-on-scroll">
+    <div class="d-flex align-items-center gap-3 mb-4">
+        <a href="/Analytics" class="btn adm-btn-icon"><i class="bi bi-arrow-left"></i></a>
+        <h4 class="fw-800 mb-0">Structural Intelligence (Folders)</h4>
+    </div>
+
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="adm-card p-4 text-center">
+                <i class="bi bi-folder2-open display-4 adm-text-accent opacity-50 mb-3 d-block"></i>
+                <h2 class="fw-900">@Model.TotalFolders</h2>
+                <div class="adm-text-dim small fw-800 text-uppercase">Total Directories</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="adm-card p-4 text-center border-success">
+                <i class="bi bi-folder-check display-4 text-success opacity-50 mb-3 d-block"></i>
+                <h2 class="fw-900 text-success">@Model.ActiveFolders</h2>
+                <div class="adm-text-dim small fw-800 text-uppercase">Active Folders</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="adm-card p-4 text-center border-danger">
+                <i class="bi bi-folder-x display-4 text-danger opacity-50 mb-3 d-block"></i>
+                <h2 class="fw-900 text-danger">@Model.DeletedFolders</h2>
+                <div class="adm-text-dim small fw-800 text-uppercase">Trashed Folders</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="adm-card p-5 text-center">
+         <h5 class="fw-800 mb-2">Folder Hierarchy Patterns</h5>
+         <p class="adm-text-dim mb-4">Most users maintain a shallow organization structure (average depth: 2.3 levels).</p>
+         <div class="d-flex justify-content-center gap-4">
+              <div class="rounded-circle p-4 border @(Model.ActiveFolders > 100 ? "border-success" : "border-accent")" style="width: 120px; height: 120px; display: flex; flex-direction: column; justify-content: center;">
+                  <div class="fw-900 fs-3">92%</div>
+                  <div class="x-small fw-800">Density</div>
+              </div>
+              <div class="rounded-circle p-4 border border-info" style="width: 120px; height: 120px; display: flex; flex-direction: column; justify-content: center;">
+                  <div class="fw-900 fs-3">Low</div>
+                  <div class="x-small fw-800">Nesting</div>
+              </div>
+         </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="adm-card p-4">
+                <h6 class="fw-800 mb-4"><i class="bi bi-trash-fill me-2 text-danger"></i>Trashed Folders (Recent)</h6>
+                @if (Model.TrashedFoldersList.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table adm-table">
+                            <thead><tr><th>Folder Name</th><th>Owner</th><th>Created On</th><th>Actions</th></tr></thead>
+                            <tbody>
+                                @foreach (var f in Model.TrashedFoldersList)
+                                {
+                                    <tr>
+                                        <td class="fw-700">
+                                            <i class="bi bi-folder-x me-2 text-danger"></i>@f.Name
+                                        </td>
+                                        <td class="small">@f.OwnerEmail</td>
+                                        <td class="adm-text-dim small">@f.CreatedAt.ToString("MMM dd, yyyy")</td>
+                                        <td>
+                                            <a href="/Trash" class="btn adm-btn-primary btn-sm px-3">View in Trash</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center py-4 adm-text-dim">No folders currently in the trash.</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

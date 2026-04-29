@@ -1,0 +1,94 @@
+@model AnalyticsViewModel
+@{ ViewData["Title"] = "Login & Access Analytics"; }
+
+<div class="animate-on-scroll">
+    <div class="d-flex align-items-center gap-3 mb-4">
+        <a href="/Analytics" class="btn adm-btn-icon"><i class="bi bi-arrow-left"></i></a>
+        <h4 class="fw-800 mb-0">Login & Access Intelligence</h4>
+    </div>
+
+    <!-- Overview Stats -->
+    <div class="row g-4 mb-4">
+        @foreach (var kv in Model.ActionBreakdown.OrderByDescending(x => x.Value).Take(4))
+        {
+            <div class="col-md-3">
+                <div class="adm-card p-3 text-center">
+                    <div class="adm-text-dim x-small fw-800 text-uppercase mb-1">@kv.Key</div>
+                    <div class="fw-900 fs-2">@kv.Value</div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Action Categories -->
+    <div class="row g-4">
+        <div class="col-lg-4">
+            <div class="adm-card p-4">
+                <h6 class="fw-800 mb-4">Event Categories</h6>
+                <div class="list-group list-group-flush border-0">
+                    @{
+                        var actions = new[] { 
+                            "AdminLogin", "UserLoggedIn", "FileUploaded", "FolderCreated", 
+                            "FileTrashed", "ShareLinkCreated", "FolderDeleted", "PasswordChanged" 
+                        };
+                    }
+                    @foreach (var action in actions)
+                    {
+                        var count = Model.ActionBreakdown.ContainsKey(action) ? Model.ActionBreakdown[action] : 0;
+                        var isActive = ViewBag.SelectedAction == action;
+                        <a href="/Analytics/Access?actionType=@action" 
+                           class="list-group-item d-flex justify-content-between align-items-center border-0 mb-2 rounded-3 px-3 py-2 text-decoration-none @(isActive ? "adm-active-item" : "adm-list-item-custom")">
+                            <span class="fw-600">@action</span>
+                            <span class="badge @(count > 0 ? "adm-badge-lg" : "adm-badge-dim")">@count</span>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="adm-card p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h6 class="fw-800 mb-0">
+                        @(string.IsNullOrEmpty(ViewBag.SelectedAction) ? "Recent Activity (All)" : $"Audit Trail: {ViewBag.SelectedAction}")
+                    </h6>
+                    @if (!string.IsNullOrEmpty(ViewBag.SelectedAction))
+                    {
+                        <a href="/Analytics/Access" class="small text-decoration-none adm-text-accent fw-700">Clear Filter</a>
+                    }
+                </div>
+
+                <div class="adm-scroll-wrapper" style="max-height: 600px;">
+                    @if (Model.RecentActivity.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table adm-table">
+                                <thead><tr><th>Time</th><th>User</th><th>Action</th><th>Target</th></tr></thead>
+                                <tbody>
+                                @foreach (var l in Model.RecentActivity)
+                                {
+                                    <tr>
+                                        <td class="small adm-text-dim">@l.CreatedAt.ToString("MMM dd, HH:mm")</td>
+                                        <td>
+                                            <div class="fw-700 small">@(l.UserEmail ?? "System")</div>
+                                        </td>
+                                        <td><span class="badge adm-badge x-small">@l.Action</span></td>
+                                        <td class="small adm-text-dim">@l.TargetType @(string.IsNullOrEmpty(l.Id) ? "" : $"({l.Id[..Math.Min(8, l.Id.Length)]})")</td>
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5 adm-text-dim">
+                            <i class="bi bi-search display-4 mb-3 d-block opacity-25"></i>
+                            <p>No matching audit records found for this filter.</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

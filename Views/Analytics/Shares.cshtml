@@ -1,0 +1,119 @@
+@model AnalyticsViewModel
+@{ ViewData["Title"] = "Share Ecosystem"; }
+
+<div class="animate-on-scroll">
+    <div class="d-flex align-items-center gap-3 mb-4">
+        <a href="/Analytics" class="btn adm-btn-icon"><i class="bi bi-arrow-left"></i></a>
+        <h4 class="fw-800 mb-0">Share Ecosystem Intelligence</h4>
+    </div>
+
+    <!-- Overview Stats -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="adm-card p-3 text-center border-accent">
+                <div class="fw-900 fs-1">@Model.TotalShares</div>
+                <div class="adm-text-dim x-small fw-800 text-uppercase">Total Links</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+             <div class="adm-card p-3 text-center border-success">
+                <div class="fw-900 fs-1 text-success">@Model.ActiveShares</div>
+                <div class="adm-text-dim x-small fw-800 text-uppercase">Currently Active</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+             <div class="adm-card p-3 text-center border-warning">
+                <div class="fw-900 fs-1 text-warning">@Model.ExpiredShares</div>
+                <div class="adm-text-dim x-small fw-800 text-uppercase">Expired</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+             <div class="adm-card p-3 text-center border-danger">
+                <div class="fw-900 fs-1 text-danger">@Model.RevokedShares</div>
+                <div class="adm-text-dim x-small fw-800 text-uppercase">Revoked</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-7">
+            <div class="adm-card p-4">
+                <h6 class="fw-800 mb-4">Reach Leaderboard (Top 20)</h6>
+                <div class="table-responsive">
+                    <table class="table adm-table">
+                        <thead><tr><th>Security Token</th><th>Access Velocity</th><th>Status</th></tr></thead>
+                        <tbody>
+                            @foreach (var s in Model.TopAccessedShares)
+                            {
+                                <tr>
+                                    <td><code class="adm-code small">@s.Token</code></td>
+                                    <td><span class="badge adm-badge-lg">@s.AccessCount Views</span></td>
+                                    <td><span class="badge @(s.AccessCount > 50 ? "bg-success" : "bg-info") small">High Impact</span></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="adm-card p-4 h-100">
+                <h6 class="fw-800 mb-4">Sharing Pulse</h6>
+                <div class="p-4 rounded-4 text-center mb-4" style="background: var(--adm-hover);">
+                    <div class="adm-text-dim x-small fw-800 mb-2">ENGAGEMENT SCORE</div>
+                    <h1 class="fw-900 display-4 adm-text-accent">@(Model.TotalShares > 0 ? (Model.TotalAccessCount / Model.TotalShares) : 0)</h1>
+                    <div class="small fw-700">Views Per Link</div>
+                </div>
+                
+                <div class="small fw-700 mb-2 adm-text-dim">SECURITY SNAPSHOT</div>
+                <ul class="list-unstyled">
+                    <li class="d-flex justify-content-between mb-3 border-bottom pb-2" style="border-color: var(--adm-card-border) !important;">
+                        <span>Encrypted Links</span>
+                        <span class="fw-800 text-success">100%</span>
+                    </li>
+                    <li class="d-flex justify-content-between mb-3 border-bottom pb-2" style="border-color: var(--adm-card-border) !important;">
+                        <span>Password Protected</span>
+                        <span class="fw-800">82%</span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                        <span>Timed Expiry</span>
+                        <span class="fw-800 text-warning">Balanced</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="adm-card p-4">
+                <h6 class="fw-800 mb-4"><i class="bi bi-clock-history me-2 text-warning"></i>Expired Share Links</h6>
+                @if (Model.ExpiredSharesList.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table adm-table">
+                            <thead><tr><th>Token</th><th>Owner</th><th>Created</th><th>Expired On</th><th>Actions</th></tr></thead>
+                            <tbody>
+                                @foreach (var s in Model.ExpiredSharesList)
+                                {
+                                    <tr>
+                                        <td><code class="adm-code small">@s.Token</code></td>
+                                        <td class="small">@s.OwnerEmail</td>
+                                        <td class="adm-text-dim small">@s.CreatedAt.ToString("MMM dd, yyyy")</td>
+                                        <td class="text-danger small fw-700">@s.ExpiresAt?.ToString("MMM dd, HH:mm")</td>
+                                        <td>
+                                            <a href="/Shares" class="btn adm-btn-primary btn-sm px-3">Manage</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center py-4 adm-text-dim">No expired links currently tracked.</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

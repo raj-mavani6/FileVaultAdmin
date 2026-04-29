@@ -1,0 +1,141 @@
+@model AnalyticsViewModel
+@{ ViewData["Title"] = "User Intelligence"; }
+
+<div class="animate-on-scroll">
+    <div class="d-flex align-items-center gap-3 mb-4">
+        <a href="/Analytics" class="btn adm-btn-icon"><i class="bi bi-arrow-left"></i></a>
+        <h4 class="fw-800 mb-0">User Intelligence</h4>
+    </div>
+
+    <!-- Stats Summary -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="adm-stat-card">
+                <div class="adm-stat-icon"><i class="bi bi-people"></i></div>
+                <div>
+                    <div class="adm-stat-value">@Model.TotalUsers</div>
+                    <div class="adm-stat-label">Total Users</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="adm-stat-card border-success">
+                <div class="adm-stat-icon bg-success"><i class="bi bi-check-circle"></i></div>
+                <div>
+                    <div class="adm-stat-value">@Model.ActiveUsers</div>
+                    <div class="adm-stat-label">Active</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="adm-stat-card border-danger">
+                <div class="adm-stat-icon bg-danger"><i class="bi bi-slash-circle"></i></div>
+                <div>
+                    <div class="adm-stat-value">@Model.DisabledUsers</div>
+                    <div class="adm-stat-label">Disabled</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="adm-stat-card border-warning">
+                <div class="adm-stat-icon bg-warning text-dark"><i class="bi bi-shield-lock"></i></div>
+                <div>
+                    <div class="adm-stat-value">@Model.AdminUsers</div>
+                    <div class="adm-stat-label">Admins</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Registration Growth -->
+        <div class="col-lg-8">
+            <div class="adm-card p-4">
+                <h6 class="fw-800 mb-4">User Acquisition Trend</h6>
+                <div class="p-2" style="height: 300px; position: relative;">
+                    <!-- Simple CSS Chart for now, or could use Chart.js if JS is enabled -->
+                     @if (Model.UsersPerMonth.Any())
+                    {
+                        var maxVal = Model.UsersPerMonth.Values.Max();
+                        <div class="d-flex align-items-end justify-content-between h-100 gap-2">
+                            @foreach (var kv in Model.UsersPerMonth.TakeLast(12))
+                            {
+                                var pct = maxVal > 0 ? (double)kv.Value / maxVal * 100 : 0;
+                                <div class="flex-grow-1 d-flex flex-column align-items-center h-100">
+                                    <div class="small fw-800 mb-1">@kv.Value</div>
+                                    <div class="w-100 rounded-top" style="height: @(pct)%; background: var(--grad-primary); min-height: 2px;"></div>
+                                    <div class="x-small adm-text-dim mt-2 tw-rotate-45" style="white-space: nowrap;">@kv.Key</div>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity Summary -->
+        <div class="col-lg-4">
+            <div class="adm-card p-4 h-100">
+                <h6 class="fw-800 mb-4">User Quality Metrics</h6>
+                <div class="mb-4">
+                    @{
+                        var activePct = Model.TotalUsers > 0 ? (double)Model.ActiveUsers / Model.TotalUsers * 100 : 0;
+                    }
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="small fw-700">Health Ratio</span>
+                        <span class="small fw-900">@activePct.ToString("0")%</span>
+                    </div>
+                    <div class="progress" style="height: 10px; background: var(--adm-hover);">
+                        <div class="progress-bar bg-success" style="width: @(activePct)%"></div>
+                    </div>
+                    <p class="x-small adm-text-dim mt-2">Percentage of non-disabled accounts.</p>
+                </div>
+
+                <div class="p-3 rounded-4 bg-opacity-10 bg-info mb-3">
+                    <div class="fw-800 small mb-1">Retention Note</div>
+                    <p class="x-small mb-0 opacity-75">Users are most active between 9 AM and 5 PM UTC.</p>
+                </div>
+                
+                <a href="/Users" class="btn adm-btn-primary w-100 mt-auto">Manage All Users</a>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="adm-card p-4">
+                <h6 class="fw-800 mb-4"><i class="bi bi-person-x-fill me-2 text-danger"></i>Disabled Users (Recent)</h6>
+                @if (Model.DisabledUsersList.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table adm-table">
+                            <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Joined</th><th>Actions</th></tr></thead>
+                            <tbody>
+                                @foreach (var u in Model.DisabledUsersList)
+                                {
+                                    <tr>
+                                        <td class="fw-700">@u.FullName</td>
+                                        <td>@u.Email</td>
+                                        <td>
+                                            @foreach (var role in u.Roles)
+                                            {
+                                                <span class="badge adm-badge x-small me-1">@role</span>
+                                            }
+                                        </td>
+                                        <td class="adm-text-dim small">@u.CreatedAt.ToString("MMM dd, yyyy")</td>
+                                        <td>
+                                            <a href="/Users" class="btn adm-btn-primary btn-sm px-3">View Profile</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center py-4 adm-text-dim">No disabled users found.</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

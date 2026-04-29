@@ -1,0 +1,96 @@
+@model TrashViewModel
+@{ ViewData["Title"] = "Trash Management"; }
+
+<div class="adm-toolbar d-flex justify-content-between align-items-center mb-4 gap-3">
+    <div class="adm-toolbar-left">
+        <h4 class="mb-0 fw-700 text-danger"><i class="bi bi-trash3-fill me-2"></i>Platform Trash Management</h4>
+        <p class="adm-text-dim mb-0 small">Overview of all deleted resources across the system.</p>
+    </div>
+    <div class="adm-toolbar-right d-flex align-items-center gap-3">
+        <span class="badge adm-badge-lg">@(Model.Files.Count + Model.Folders.Count) items total</span>
+    </div>
+</div>
+
+@if (!Model.Files.Any() && !Model.Folders.Any())
+{
+    <div class="adm-card p-5 text-center">
+        <div class="py-5">
+            <i class="bi bi-trash3 display-1 opacity-10 mb-4 d-block"></i>
+            <h5 class="fw-700">Trash is Empty</h5>
+            <p class="adm-text-dim">No deleted files or folders found on the platform.</p>
+        </div>
+    </div>
+}
+
+@if (Model.Folders.Any())
+{
+    <h5 class="fw-700 mb-3 mt-4"><i class="bi bi-folder-x me-2"></i>Trashed Folders</h5>
+    <div class="adm-card mb-4">
+        <div class="table-responsive">
+            <table class="table adm-table mb-0">
+                <thead><tr><th>Folder Name</th><th>Owner</th><th>Created</th><th class="text-end">Actions</th></tr></thead>
+                <tbody>
+                @foreach (var f in Model.Folders)
+                {
+                    <tr class="animate-fade-in">
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-folder-fill me-2 text-danger" style="font-size: 1.2rem;"></i>
+                                <span class="fw-600">@f.Name</span>
+                            </div>
+                        </td>
+                        <td class="adm-text-muted">@f.OwnerEmail</td>
+                        <td class="adm-text-dim small">@f.CreatedAt.ToString("MMM dd, yyyy")</td>
+                        <td class="text-end">
+                            <form asp-action="RestoreFolder" method="post" class="d-inline">
+                                <input type="hidden" name="id" value="@f.Id" />
+                                <button type="submit" class="btn btn-sm adm-btn-icon text-success" title="Restore"><i class="bi bi-arrow-counterclockwise"></i></button>
+                            </form>
+                            <a href="/Folders" class="btn btn-sm adm-btn-icon text-danger" title="Purge logic exists in Folders section"><i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+@if (Model.Files.Any())
+{
+    <h5 class="fw-700 mb-3 mt-4"><i class="bi bi-file-earmark-x me-2"></i>Trashed Files</h5>
+    <div class="adm-card">
+        <div class="table-responsive">
+            <table class="table adm-table mb-0">
+                <thead><tr><th>File Name</th><th>Owner</th><th>Size</th><th>Deleted</th><th class="text-end">Actions</th></tr></thead>
+                <tbody>
+                @foreach (var f in Model.Files)
+                {
+                    <tr class="animate-fade-in">
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-file-earmark-fill me-2 text-warning"></i>
+                                <span class="fw-600">@f.FileName</span>
+                                <small class="adm-text-dim ms-2">.@f.Extension</small>
+                            </div>
+                        </td>
+                        <td class="adm-text-muted">@f.OwnerEmail</td>
+                        <td class="adm-text-dim small">@FileVaultAdmin.Helpers.FormatHelpers.FormatFileSize(f.SizeBytes)</td>
+                        <td class="adm-text-dim small">@(f.DeletedAt?.ToString("MMM dd, yyyy") ?? "-")</td>
+                        <td class="text-end">
+                            <form asp-action="RestoreFile" method="post" class="d-inline">
+                                <input type="hidden" name="id" value="@f.Id" />
+                                <button type="submit" class="btn btn-sm adm-btn-icon text-success" title="Restore"><i class="bi bi-arrow-counterclockwise"></i></button>
+                            </form>
+                            <form asp-action="PermanentDeleteFile" method="post" class="d-inline">
+                                <input type="hidden" name="id" value="@f.Id" />
+                                <button type="submit" class="btn btn-sm adm-btn-icon text-danger" title="Purge Permanently" onclick="return confirm('Purge this file from GridFS permanently?')"><i class="bi bi-x-circle"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

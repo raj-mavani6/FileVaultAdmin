@@ -1,0 +1,228 @@
+@model FileListViewModel
+@{ ViewData["Title"] = "File Browser"; }
+
+<div class="adm-toolbar d-flex justify-content-between align-items-center mb-4 gap-3">
+    <div class="adm-toolbar-left">
+        <form method="get" class="d-flex gap-2 flex-wrap">
+            <input type="text" name="search" value="@Model.SearchTerm" class="form-control adm-input" style="width: 250px;" placeholder="Search files..." />
+            <input type="text" name="owner" value="@Model.OwnerFilter" class="form-control adm-input" style="width: 200px;" placeholder="Owner user ID..." />
+            @if (!string.IsNullOrEmpty(Model.FolderFilter))
+            {
+                <input type="hidden" name="folderId" value="@Model.FolderFilter" />
+            }
+            <button type="submit" class="btn adm-btn-primary"><i class="bi bi-search me-1"></i>Filter</button>
+            @if (!string.IsNullOrEmpty(Model.SearchTerm) || !string.IsNullOrEmpty(Model.OwnerFilter) || !string.IsNullOrEmpty(Model.FolderFilter))
+            { <a href="/Files" class="btn adm-btn-ghost">Clear</a> }
+        </form>
+    </div>
+
+    <div class="adm-toolbar-right d-flex align-items-center gap-3">
+        @if (!string.IsNullOrEmpty(ViewBag.CurrentFolderName))
+        {
+            <div class="px-3 py-1 rounded-pill bg-info bg-opacity-10 text-info fw-700 small">
+                <i class="bi bi-folder2-open me-2"></i>FOLDER: @ViewBag.CurrentFolderName
+            </div>
+        }
+        <span class="badge adm-badge-lg">@Model.TotalFiles files</span>
+        <button type="button" class="btn adm-btn-primary" data-bs-toggle="modal" data-bs-target="#uploadFileModal">
+            <i class="bi bi-plus-lg me-2"></i>Add File
+        </button>
+    </div>
+</div>
+
+<!-- Upload Modal -->
+<div class="modal fade" id="uploadFileModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content adm-toast">
+            <div class="modal-header border-bottom-0 pb-0">
+                <h5 class="modal-title fw-700">Upload New Asset</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <form asp-action="Upload" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="mb-4">
+                        <label class="adm-label">Target Owner</label>
+                        <select name="ownerId" class="form-select adm-input" required>
+                            <option value="">-- Select Owner --</option>
+                            @foreach (var u in (List<FileVaultAdmin.Models.Domain.AppUser>)ViewBag.AllUsers)
+                            {
+                                <option value="@u.Id">@u.FullName (@u.Email)</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="adm-label">Target Folder (Optional)</label>
+                        <select name="folderId" class="form-select adm-input">
+                            <option value="">-- Root Directory --</option>
+                            @foreach (var f in (List<FileVaultAdmin.Models.Domain.Folder>)ViewBag.AllFolders)
+                            {
+                                <option value="@f.Id" selected="@(f.Id == Model.FolderFilter)">@f.Name</option>
+                            }
+                        </select>
+                        <small class="text-muted small">Choose which folder this file belongs to.</small>
+                    </div>
+                    <div class="mb-3">
+                        <label class="adm-label">Select Asset</label>
+                        <input type="file" name="file" class="form-control adm-input" required />
+                    </div>
+                </div>
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn adm-btn-ghost" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn adm-btn-primary px-4">Upload to Vault</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="adm-card">
+    <div class="table-responsive">
+        <table class="table adm-table mb-0">
+            <thead><tr><th>File</th><th>Owner</th><th>Size</th><th>Status</th><th>Uploaded</th></tr></thead>
+            <tbody>
+            @foreach (var f in Model.Files)
+            {
+                <tr class="animate-fade-in">
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <i class="bi @FileVaultAdmin.Helpers.FormatHelpers.GetFileIcon(f.Extension) me-2 adm-text-accent" style="font-size: 1.1rem;"></i>
+                            <div>
+                                <div class="fw-600">@f.FileName</div>
+                                <small class="adm-text-dim">@f.Extension</small>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="adm-text-muted">@(f.OwnerEmail ?? f.OwnerUserId[..Math.Min(8, f.OwnerUserId.Length)])</td>
+                    <td class="adm-text-muted">@f.SizeFormatted</td>
+                    <td>
+                        @if (f.IsDeleted) { <span class="badge bg-danger bg-opacity-25 text-danger">Trashed</span> }
+                        else { <span class="badge bg-success bg-opacity-25 text-success">Active</span> }
+                    </td>
+                    <td class="adm-text-muted">@f.CreatedAt.ToString("MMM dd, yyyy")</td>
+                    <td class="text-end">
+                        <div class="d-flex gap-1 justify-content-end">
+                            <a href="/Files/ViewFile/@f.Id" class="btn btn-sm adm-btn-icon text-info" title="View Details">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <button type="button" class="btn btn-sm adm-btn-icon text-warning" title="Rename" onclick="openRenameFileModal('@f.Id')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <form asp-action="DeletePermanent" method="post" class="d-inline">
+                                <input type="hidden" name="id" value="@f.Id" />
+                                <button type="submit" class="btn btn-sm adm-btn-icon text-danger" title="Delete Permanently" onclick="return confirm('Permanently delete this file from GridFS? This cannot be undone.')">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@if (Model.TotalPages > 1)
+{
+    <nav class="mt-4 d-flex justify-content-center">
+        <ul class="pagination">
+            @for (var i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.Page ? "active" : "")">
+                    <a class="page-link" href="/Files?page=@i&search=@Model.SearchTerm&owner=@Model.OwnerFilter&folderId=@Model.FolderFilter"
+                       style="background: @(i == Model.Page ? "var(--adm-accent)" : "var(--adm-hover)"); border-color: var(--adm-card-border); color: var(--adm-text);">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}
+
+<!-- Rename Modal -->
+<div class="modal fade" id="renameFileModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content adm-toast">
+            <div class="modal-header border-bottom-0 pb-0">
+                <h5 class="modal-title fw-700">Rename File</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <form asp-action="Update" method="post">
+                <input type="hidden" name="id" id="renameFileId" />
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="adm-label">New Filename</label>
+                        <input type="text" name="fileName" id="renameFileName" class="form-control adm-input" required />
+                    </div>
+                </div>
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn adm-btn-ghost" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn adm-btn-primary">Rename</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Details Modal -->
+<div class="modal fade" id="fileDetailsModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content adm-toast">
+            <div class="modal-header border-bottom-0 pb-0">
+                <h5 class="modal-title fw-700">File Metadata</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body pt-3">
+                <div class="adm-card p-3 bg-secondary bg-opacity-10">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <small class="adm-text-dim d-block">File ID</small>
+                            <code class="adm-code" id="detFileId"></code>
+                        </div>
+                        <div class="col-6">
+                            <small class="adm-text-dim d-block">Size</small>
+                            <span id="detFileSize" class="fw-600"></span>
+                        </div>
+                        <div class="col-6">
+                            <small class="adm-text-dim d-block">Extension</small>
+                            <span id="detFileExt" class="fw-600"></span>
+                        </div>
+                        <div class="col-6">
+                            <small class="adm-text-dim d-block">Status</small>
+                            <span id="detFileStatus"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-top-0 pt-0">
+                <button type="button" class="btn adm-btn-primary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+async function openRenameFileModal(id) {
+    try {
+        const resp = await fetch(`/Files/GetDetails/${id}`);
+        const data = await resp.json();
+        document.getElementById('renameFileId').value = data.id;
+        document.getElementById('renameFileName').value = data.fileName;
+        new bootstrap.Modal(document.getElementById('renameFileModal')).show();
+    } catch (err) { showToast('Error fetching file details', 'danger'); }
+}
+
+async function openFileDetailsModal(id) {
+    try {
+        const resp = await fetch(`/Files/GetDetails/${id}`);
+        const data = await resp.json();
+        document.getElementById('detFileId').textContent = data.id;
+        document.getElementById('detFileSize').textContent = (data.sizeBytes / 1024 / 1024).toFixed(2) + ' MB';
+        document.getElementById('detFileExt').textContent = data.extension;
+        document.getElementById('detFileStatus').innerHTML = data.isDeleted 
+            ? '<span class="badge bg-danger">Trashed</span>' 
+            : '<span class="badge bg-success">Active</span>';
+        new bootstrap.Modal(document.getElementById('fileDetailsModal')).show();
+    } catch (err) { showToast('Error fetching file details', 'danger'); }
+}
+</script>
+}

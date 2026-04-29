@@ -1,0 +1,36 @@
+<!-- Edit User Modal -->
+<div class="modal fade" id="editUserModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content adm-card border-0">
+            <div class="modal-header border-bottom-0 pb-2">
+                <h5 class="modal-title fw-800">Edit User Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form asp-action="Update" asp-controller="Users" method="post">
+                <input type="hidden" name="id" id="editUserId" value="@(Model is UserDetailsViewModel details ? details.Id : "")" />
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="adm-label">Full Name</label>
+                        <input type="text" name="fullName" id="editUserFullName" class="form-control adm-input" required value="@(Model is UserDetailsViewModel details2 ? details2.FullName : "")" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="adm-label">Email Address</label>
+                        <input type="email" name="email" id="editUserEmail" class="form-control adm-input" required value="@(Model is UserDetailsViewModel details3 ? details3.Email : "")" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="adm-label">Password <span class="text-muted small ms-2 fw-normal">(Leave blank to keep unchanged)</span></label>
+                        <input type="password" name="password" id="editUserPassword" class="form-control adm-input" placeholder="••••••••" />
+                    </div>
+                    <div class="form-check form-switch mb-3 mt-4">
+                        <input class="form-check-input" type="checkbox" name="isAdmin" value="true" id="editIsAdmin" @(Model is UserDetailsViewModel details4 && details4.Roles.Contains("Admin") ? "checked" : "")>
+                        <label class="form-check-label adm-label ms-2" for="editIsAdmin">Grant Admin Permissions</label>
+                    </div>
+                </div>
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-sm adm-btn-ghost px-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-sm adm-btn-primary px-4">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

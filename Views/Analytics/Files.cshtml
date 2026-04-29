@@ -1,0 +1,123 @@
+@model AnalyticsViewModel
+@{ ViewData["Title"] = "Asset Forensics"; }
+
+<div class="animate-on-scroll">
+    <div class="d-flex align-items-center gap-3 mb-4">
+        <a href="/Analytics" class="btn adm-btn-icon"><i class="bi bi-arrow-left"></i></a>
+        <h4 class="fw-800 mb-0">Asset Forensics & Storage</h4>
+    </div>
+
+    <!-- Storage Row -->
+    <div class="row g-4 mb-4">
+        <div class="col-lg-12">
+            <div class="adm-card p-4 border-accent" style="background: linear-gradient(90deg, var(--adm-surface), var(--adm-hover));">
+                <div class="row align-items-center">
+                    <div class="col-md-3 text-center border-end" style="border-color: var(--adm-card-border) !important;">
+                        <h2 class="fw-900 mb-0 adm-text-accent">@Model.TotalStorageFormatted</h2>
+                        <div class="adm-text-dim x-small fw-800 text-uppercase">Total Consumed</div>
+                    </div>
+                    <div class="col-md-9 px-4">
+                        <div class="d-flex justify-content-between mb-2">
+                           <span class="small fw-700">Storage Distribution Velocity</span>
+                           <span class="badge adm-badge-lg">Live Analysis</span>
+                        </div>
+                        <div class="progress" style="height: 12px; background: rgba(0,0,0,0.3); border-radius: 10px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 65%; background: var(--grad-primary);"></div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-2 x-small adm-text-dim fw-600">
+                            <span>0 GB</span>
+                            <span>Projected Limit (1 TB)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-4">
+        <!-- File Type Deep-Dive -->
+        <div class="col-lg-6">
+            <div class="adm-card p-4">
+                <h6 class="fw-800 mb-4"><i class="bi bi-pie-chart me-2 adm-text-accent"></i>Categorical Distribution</h6>
+                @if (Model.FileTypeBreakdown.Any())
+                {
+                    var maxVal = Model.FileTypeBreakdown.Values.Max();
+                    var colors = new[] { "#e74c3c", "#3498db", "#2ecc71", "#f39c12", "#9b59b6", "#1abc9c", "#e67e22", "#34495e" };
+                    var idx = 0;
+                    @foreach (var kv in Model.FileTypeBreakdown.OrderByDescending(x => x.Value))
+                    {
+                        var pct = maxVal > 0 ? (double)kv.Value / maxVal * 100 : 0;
+                        var color = colors[idx++ % colors.Length];
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-700 small">@kv.Key.ToUpper() Assets</span>
+                                <span class="fw-900 small">@kv.Value</span>
+                            </div>
+                            <div class="progress" style="height: 6px; background: var(--adm-hover);">
+                                <div class="progress-bar" style="width: @(pct)%; background: @color;"></div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        <!-- Upload Velocity -->
+        <div class="col-lg-6">
+            <div class="adm-card p-4">
+                <h6 class="fw-800 mb-4"><i class="bi bi-activity me-2 adm-text-accent"></i>Upload Velocity Trend</h6>
+                <div class="d-flex align-items-end justify-content-between gap-1" style="height: 320px;">
+                    @if (Model.FilesPerMonth.Any())
+                    {
+                        var maxV = Model.FilesPerMonth.Values.Max();
+                        @foreach (var kv in Model.FilesPerMonth.TakeLast(10))
+                        {
+                            var pct = maxV > 0 ? (double)kv.Value / maxV * 100 : 0;
+                            <div class="flex-grow-1 d-flex flex-column align-items-center h-100">
+                                <div class="small fw-900 mb-1">@kv.Value</div>
+                                <div class="w-100 rounded-top" style="height: @(pct)%; background: linear-gradient(to top, #27ae60, #2ecc71); min-height: 4px;"></div>
+                                <div class="x-small adm-text-dim mt-2" style="font-size: 0.6rem;">@kv.Key.Split('-')[1]/@kv.Key.Split('-')[0][2..]</div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="adm-card p-4">
+                <h6 class="fw-800 mb-4"><i class="bi bi-hdd-network-fill me-2 text-warning"></i>Large Files (Platform Wide)</h6>
+                @if (Model.LargeFilesList.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table adm-table">
+                            <thead><tr><th>File Name</th><th>Owner</th><th>Size</th><th>Uploaded</th><th>Actions</th></tr></thead>
+                            <tbody>
+                                @foreach (var f in Model.LargeFilesList)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="fw-700 small">@f.FileName</div>
+                                            <div class="x-small adm-text-dim">@f.Extension.ToLower()</div>
+                                        </td>
+                                        <td class="small">@f.OwnerEmail</td>
+                                        <td class="fw-800 text-warning">@f.SizeFormatted</td>
+                                        <td class="adm-text-dim small">@f.CreatedAt.ToString("MMM dd, yyyy")</td>
+                                        <td>
+                                            <a href="/Files" class="btn adm-btn-primary btn-sm px-3">Locate</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center py-4 adm-text-dim">No large files detected.</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

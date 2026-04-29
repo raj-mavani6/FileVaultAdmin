@@ -1,0 +1,212 @@
+@model DashboardViewModel
+@{ ViewData["Title"] = "Dashboard"; }
+
+<!-- Stat Cards Row 1 -->
+<div class="row g-3 mb-4">
+    <div class="col-sm-6 col-xl-3 animate-on-scroll">
+        <div class="adm-stat-card h-100">
+            <div class="adm-stat-icon bg-blue"><i class="bi bi-people-fill"></i></div>
+            <div class="adm-stat-body">
+                <div class="adm-stat-value" data-count="@Model.TotalUsers">@Model.TotalUsers</div>
+                <div class="adm-stat-label">Total Users</div>
+                <div class="adm-stat-detail">
+                    <span class="text-success"><i class="bi bi-check-circle"></i> @Model.ActiveUsers active</span>
+                    <span class="text-danger ms-2"><i class="bi bi-slash-circle"></i> @Model.DisabledUsers disabled</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3 animate-on-scroll">
+        <div class="adm-stat-card h-100">
+            <div class="adm-stat-icon bg-emerald"><i class="bi bi-file-earmark-fill"></i></div>
+            <div class="adm-stat-body">
+                <div class="adm-stat-value" data-count="@Model.TotalFiles">@Model.TotalFiles</div>
+                <div class="adm-stat-label">Total Files</div>
+                <div class="adm-stat-detail">
+                    <span class="text-warning"><i class="bi bi-trash3"></i> @Model.TrashedFiles trashed</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3 animate-on-scroll">
+        <div class="adm-stat-card h-100">
+            <div class="adm-stat-icon bg-violet"><i class="bi bi-hdd-stack-fill"></i></div>
+            <div class="adm-stat-body">
+                <div class="adm-stat-value">@Model.TotalStorageFormatted</div>
+                <div class="adm-stat-label">Storage Used</div>
+                <div class="adm-stat-detail">
+                    <span><i class="bi bi-folder"></i> @Model.TotalFolders folders</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-xl-3 animate-on-scroll">
+        <div class="adm-stat-card h-100">
+            <div class="adm-stat-icon bg-amber"><i class="bi bi-link-45deg"></i></div>
+            <div class="adm-stat-body">
+                <div class="adm-stat-value" data-count="@Model.ActiveShareLinks">@Model.ActiveShareLinks</div>
+                <div class="adm-stat-label">Active Shares</div>
+                <div class="adm-stat-detail">
+                    <span><i class="bi bi-journal-text"></i> @Model.TotalAuditLogs audit logs</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Charts Row -->
+<div class="row g-3 mb-4">
+    <div class="col-lg-5 animate-on-scroll">
+        <div class="adm-card p-4 h-100">
+            <h6 class="adm-card-title mb-3"><i class="bi bi-pie-chart-fill me-2"></i>File Type Breakdown</h6>
+            @if (Model.FileTypeBreakdown.Any())
+            {
+            <div class="adm-scroll-wrapper adm-scroll-sm px-1">
+                <div class="adm-type-chart">
+                    @{ var colors = new[] { "#4B262F", "#6b3a46", "#8b5060", "#3498db", "#2ecc71", "#e74c3c", "#f39c12", "#9b59b6", "#1abc9c", "#e67e22" }; var i = 0; var total = Model.FileTypeBreakdown.Values.Sum(); }
+                    @foreach (var kv in Model.FileTypeBreakdown)
+                    {
+                        var pct = total > 0 ? (double)kv.Value / total * 100 : 0;
+                        <div class="adm-type-row">
+                            <div class="adm-type-bar-wrap">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <div class="adm-type-ext">@kv.Key</div>
+                                    <div class="adm-type-count">@kv.Value</div>
+                                </div>
+                                <div class="adm-type-bar"><div class="adm-type-bar-fill" style="width:@pct.ToString("0.0")%;background:@colors[i % colors.Length];"></div></div>
+                            </div>
+                        </div>
+                        i++;
+                    }
+                </div>
+            </div>
+            }
+            else
+            {
+                <div class="adm-empty"><i class="bi bi-pie-chart"></i><p>No file data yet</p></div>
+            }
+        </div>
+    </div>
+    <div class="col-lg-7 animate-on-scroll">
+        <div class="adm-card p-4 h-100">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h6 class="adm-card-title mb-0"><i class="bi bi-clock-history me-2"></i>Recent Activity</h6>
+                <a href="/AuditLogs" class="adm-link small">View all →</a>
+            </div>
+            @if (Model.RecentLogs.Any())
+            {
+            <div class="adm-scroll-wrapper px-1">
+                <div class="adm-activity-feed">
+                    @foreach (var log in Model.RecentLogs)
+                    {
+                        <div class="adm-activity-item">
+                            <div class="adm-activity-dot"></div>
+                            <div class="adm-activity-body">
+                                <div class="d-flex justify-content-between">
+                                    <span><span class="badge adm-badge">@log.Action</span> <span class="adm-text-muted">@(log.UserEmail ?? "System")</span></span>
+                                    <small class="adm-text-dim">@FileVaultAdmin.Helpers.FormatHelpers.TimeAgo(log.CreatedAt)</small>
+                                </div>
+                                @if (log.TargetType != null)
+                                {
+                                    <small class="adm-text-dim">@log.TargetType @(log.TargetId != null ? $"#{log.TargetId[..Math.Min(8, log.TargetId.Length)]}" : "")</small>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            }
+            else
+            {
+                <div class="adm-empty"><i class="bi bi-journal"></i><p>No activity yet</p></div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Tables Row -->
+<div class="row g-3 mb-4">
+    <div class="col-lg-6 animate-on-scroll">
+        <div class="adm-card p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h6 class="adm-card-title mb-0"><i class="bi bi-person-plus me-2"></i>Recent Users</h6>
+                <a href="/Users" class="adm-link small">View all →</a>
+            </div>
+            <div class="adm-scroll-wrapper px-1">
+                <div class="table-responsive">
+                    <table class="table adm-table mb-0">
+                    <thead><tr><th>User</th><th>Role</th><th>Status</th></tr></thead>
+                    <tbody>
+                    @foreach (var u in Model.RecentUsers)
+                    {
+                        <tr>
+                            <td>
+                                <div class="fw-600">@u.FullName</div>
+                                <small class="adm-text-muted">@u.Email</small>
+                            </td>
+                            <td>@foreach (var r in u.Roles) { <span class="badge adm-badge me-1">@r</span> }</td>
+                            <td>
+                                @if (u.IsActive) { <span class="badge bg-success bg-opacity-10 text-success"><span class="adm-status-dot status-active"></span> Active</span> }
+                                else { <span class="badge bg-danger bg-opacity-10 text-danger"><span class="adm-status-dot status-disabled"></span> Disabled</span> }
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 animate-on-scroll">
+        <div class="adm-card p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h6 class="adm-card-title mb-0"><i class="bi bi-file-earmark-arrow-up me-2"></i>Recent Files</h6>
+                <a href="/Files" class="adm-link small">View all →</a>
+            </div>
+            <div class="adm-scroll-wrapper px-1">
+                <div class="table-responsive">
+                    <table class="table adm-table mb-0">
+                    <thead><tr><th>File</th><th>Size</th><th>Status</th></tr></thead>
+                    <tbody>
+                    @foreach (var f in Model.RecentFiles)
+                    {
+                        <tr>
+                             <td>
+                                 <div class="d-flex align-items-center">
+                                     <i class="bi @FileVaultAdmin.Helpers.FormatHelpers.GetFileIcon(f.Extension) me-2 adm-text-accent" style="font-size: 1.1rem;"></i>
+                                     <div class="fw-600">@f.FileName</div>
+                                 </div>
+                             </td>
+                            <td class="adm-text-muted">@f.SizeFormatted</td>
+                            <td>
+                                @if (f.IsDeleted) { <span class="badge bg-danger bg-opacity-25 text-danger">Trashed</span> }
+                                else { <span class="badge bg-success bg-opacity-25 text-success">Active</span> }
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Animate counters
+    document.querySelectorAll('[data-count]').forEach(el => {
+        const target = parseInt(el.dataset.count);
+        if (isNaN(target) || target === 0) return;
+        let current = 0;
+        const increment = Math.max(1, Math.ceil(target / 40));
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) { current = target; clearInterval(timer); }
+            el.textContent = current.toLocaleString();
+        }, 30);
+    });
+});
+</script>
+}

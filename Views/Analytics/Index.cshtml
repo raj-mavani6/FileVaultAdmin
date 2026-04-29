@@ -1,0 +1,303 @@
+@model AnalyticsViewModel
+@{ ViewData["Title"] = "Analytics"; }
+
+<div class="animate-on-scroll">
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h4 class="fw-800 mb-1"><i class="bi bi-graph-up-arrow me-2"></i>System Analytics</h4>
+            <p class="adm-text-dim small mb-0">Comprehensive insights across your entire vault</p>
+        </div>
+        <span class="badge adm-badge-lg"><i class="bi bi-clock me-1"></i>Live Data</span>
+    </div>
+
+    <!-- ===== ROW 1: User & File Analytics ===== -->
+    <div class="row g-4 mb-4">
+        <!-- User Analytics -->
+        <div class="col-lg-6">
+            <div class="adm-card p-4 h-100">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h6 class="adm-card-title mb-0"><i class="bi bi-people-fill me-2 adm-text-accent"></i>User Analytics</h6>
+                    <a href="/Analytics/Users" class="adm-link-accent small text-decoration-none fw-700">View All <i class="bi bi-arrow-right ms-1"></i></a>
+                </div>
+                <div class="row g-3 mb-4">
+@* ... and so on for others ... *@
+                    <div class="col-3 text-center">
+                        <div class="fw-900 fs-3">@Model.TotalUsers</div>
+                        <div class="x-small adm-text-dim text-uppercase fw-700">Total</div>
+                    </div>
+                    <div class="col-3 text-center">
+                        <div class="fw-900 fs-3 text-success">@Model.ActiveUsers</div>
+                        <div class="x-small adm-text-dim text-uppercase fw-700">Active</div>
+                    </div>
+                    <div class="col-3 text-center">
+                        <div class="fw-900 fs-3 text-danger">@Model.DisabledUsers</div>
+                        <div class="x-small adm-text-dim text-uppercase fw-700">Disabled</div>
+                    </div>
+                    <div class="col-3 text-center">
+                        <div class="fw-900 fs-3 text-warning">@Model.AdminUsers</div>
+                        <div class="x-small adm-text-dim text-uppercase fw-700">Admins</div>
+                    </div>
+                </div>
+
+                <!-- Users Per Month Chart -->
+                @if (Model.UsersPerMonth.Any())
+                {
+                    <div class="small fw-700 mb-2 adm-text-dim">REGISTRATIONS PER MONTH</div>
+                    <div class="d-flex align-items-end gap-1" style="height: 80px;">
+                        @{ var maxUsers = Model.UsersPerMonth.Values.Any() ? Model.UsersPerMonth.Values.Max() : 1; }
+                        @foreach (var kv in Model.UsersPerMonth.TakeLast(8))
+                        {
+                            var pct = maxUsers > 0 ? (double)kv.Value / maxUsers * 100 : 0;
+                            <div class="flex-grow-1 d-flex flex-column align-items-center">
+                                <div class="small fw-800 mb-1">@kv.Value</div>
+                                <div style="width: 100%; height: @(pct)%; min-height: 4px; background: var(--grad-primary); border-radius: 6px 6px 0 0;"></div>
+                                <div class="x-small adm-text-dim mt-1">@kv.Key[5..]</div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- File Analytics -->
+        <div class="col-lg-6">
+            <div class="adm-card p-4 h-100">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h6 class="adm-card-title mb-0"><i class="bi bi-file-earmark-fill me-2 adm-text-accent"></i>File Analytics</h6>
+                    <a href="/Analytics/Files" class="adm-link-accent small text-decoration-none fw-700">View All <i class="bi bi-arrow-right ms-1"></i></a>
+                </div>
+                <div class="row g-3 mb-4">
+                    <div class="col-3 text-center">
+                        <div class="fw-900 fs-3">@Model.TotalFiles</div>
+                        <div class="x-small adm-text-dim text-uppercase fw-700">Total</div>
+                    </div>
+                    <div class="col-3 text-center">
+                        <div class="fw-900 fs-3 text-success">@Model.ActiveFiles</div>
+                        <div class="x-small adm-text-dim text-uppercase fw-700">Active</div>
+                    </div>
+                    <div class="col-3 text-center">
+                        <div class="fw-900 fs-3 text-danger">@Model.TrashedFiles</div>
+                        <div class="x-small adm-text-dim text-uppercase fw-700">Trashed</div>
+                    </div>
+                    <div class="col-3 text-center">
+                        <div class="fw-900 fs-3 adm-text-accent">@Model.TotalStorageFormatted</div>
+                        <div class="x-small adm-text-dim text-uppercase fw-700">Storage</div>
+                    </div>
+                </div>
+
+                <!-- Files Per Month Chart -->
+                @if (Model.FilesPerMonth.Any())
+                {
+                    <div class="small fw-700 mb-2 adm-text-dim">UPLOADS PER MONTH</div>
+                    <div class="d-flex align-items-end gap-1" style="height: 80px;">
+                        @{ var maxFiles = Model.FilesPerMonth.Values.Any() ? Model.FilesPerMonth.Values.Max() : 1; }
+                        @foreach (var kv in Model.FilesPerMonth.TakeLast(8))
+                        {
+                            var pct = maxFiles > 0 ? (double)kv.Value / maxFiles * 100 : 0;
+                            <div class="flex-grow-1 d-flex flex-column align-items-center">
+                                <div class="small fw-800 mb-1">@kv.Value</div>
+                                <div style="width: 100%; height: @(pct)%; min-height: 4px; background: linear-gradient(135deg, #2ecc71, #27ae60); border-radius: 6px 6px 0 0;"></div>
+                                <div class="x-small adm-text-dim mt-1">@kv.Key[5..]</div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== ROW 2: Share & Folder Analytics ===== -->
+    <div class="row g-4 mb-4">
+        <!-- Share Analytics -->
+        <div class="col-lg-6">
+            <div class="adm-card p-4 h-100">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h6 class="adm-card-title mb-0"><i class="bi bi-link-45deg me-2 adm-text-accent"></i>Share Link Analytics</h6>
+                    <a href="/Analytics/Shares" class="adm-link-accent small text-decoration-none fw-700">View All <i class="bi bi-arrow-right ms-1"></i></a>
+                </div>
+                <div class="row g-3 mb-4">
+                    <div class="col-3 text-center">
+                        <div class="fw-900 fs-3">@Model.TotalShares</div>
+                        <div class="x-small adm-text-dim text-uppercase fw-700">Total</div>
+                    </div>
+                    <div class="col-3 text-center">
+                        <div class="fw-900 fs-3 text-success">@Model.ActiveShares</div>
+                        <div class="x-small adm-text-dim text-uppercase fw-700">Active</div>
+                    </div>
+                    <div class="col-3 text-center">
+                        <div class="fw-900 fs-3 text-warning">@Model.ExpiredShares</div>
+                        <div class="x-small adm-text-dim text-uppercase fw-700">Expired</div>
+                    </div>
+                    <div class="col-3 text-center">
+                        <div class="fw-900 fs-3 text-danger">@Model.RevokedShares</div>
+                        <div class="x-small adm-text-dim text-uppercase fw-700">Revoked</div>
+                    </div>
+                </div>
+
+                <div class="p-3 rounded-3 mb-3" style="background: var(--adm-hover);">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="fw-700"><i class="bi bi-eye me-2"></i>Total Link Access Count</span>
+                        <span class="fw-900 fs-4 adm-text-accent">@Model.TotalAccessCount</span>
+                    </div>
+                </div>
+
+                @if (Model.TopAccessedShares.Any())
+                {
+                    <div class="small fw-700 mb-2 adm-text-dim">TOP ACCESSED SHARES</div>
+                    @foreach (var s in Model.TopAccessedShares)
+                    {
+                        <div class="d-flex justify-content-between align-items-center py-2 border-bottom" style="border-color: var(--adm-card-border) !important;">
+                            <code class="adm-code small">@s.Token[..Math.Min(16, s.Token.Length)]…</code>
+                            <span class="badge adm-badge">@s.AccessCount views</span>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        <!-- Folder Analytics -->
+        <div class="col-lg-6">
+            <div class="adm-card p-4 h-100">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h6 class="adm-card-title mb-0"><i class="bi bi-folder-fill me-2 adm-text-accent"></i>Folder Analytics</h6>
+                    <a href="/Analytics/Folders" class="adm-link-accent small text-decoration-none fw-700">View All <i class="bi bi-arrow-right ms-1"></i></a>
+                </div>
+                <div class="row g-3 mb-4">
+                    <div class="col-4 text-center">
+                        <div class="fw-900 fs-3">@Model.TotalFolders</div>
+                        <div class="x-small adm-text-dim text-uppercase fw-700">Total</div>
+                    </div>
+                    <div class="col-4 text-center">
+                        <div class="fw-900 fs-3 text-success">@Model.ActiveFolders</div>
+                        <div class="x-small adm-text-dim text-uppercase fw-700">Active</div>
+                    </div>
+                    <div class="col-4 text-center">
+                        <div class="fw-900 fs-3 text-danger">@Model.DeletedFolders</div>
+                        <div class="x-small adm-text-dim text-uppercase fw-700">Deleted</div>
+                    </div>
+                </div>
+
+                <!-- File Type Breakdown -->
+                <h6 class="adm-card-title mb-3 mt-4"><i class="bi bi-pie-chart-fill me-2 adm-text-accent"></i>File Type Breakdown</h6>
+                @if (Model.FileTypeBreakdown.Any())
+                {
+                    var maxCount = Model.FileTypeBreakdown.Values.Max();
+                    var colors = new[] { "#e74c3c", "#3498db", "#2ecc71", "#f39c12", "#9b59b6", "#1abc9c", "#e67e22", "#34495e" };
+                    var idx = 0;
+                    <div class="adm-type-chart">
+                        @foreach (var kv in Model.FileTypeBreakdown.Take(8))
+                        {
+                            var barPct = maxCount > 0 ? (double)kv.Value / maxCount * 100 : 0;
+                            var color = colors[idx++ % colors.Length];
+                            <div class="adm-type-row">
+                                <div class="adm-type-bar-wrap">
+                                    <div class="d-flex justify-content-between">
+                                        <span class="adm-type-ext">@kv.Key.ToUpper().Replace(".", "")</span>
+                                        <span class="adm-type-count">@kv.Value</span>
+                                    </div>
+                                    <div class="adm-type-bar">
+                                        <div class="adm-type-bar-fill" style="width: @(barPct)%; background: @color;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== ROW 3: Top Storage Users & Access Analytics ===== -->
+    <div class="row g-4 mb-4">
+        <!-- Top Storage Users -->
+        <div class="col-lg-6">
+            <div class="adm-card p-4 h-100">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h6 class="adm-card-title mb-0"><i class="bi bi-hdd-fill me-2 adm-text-accent"></i>Top Storage Consumers</h6>
+                    <a href="/Analytics/Storage" class="adm-link-accent small text-decoration-none fw-700">View All <i class="bi bi-arrow-right ms-1"></i></a>
+                </div>
+                @if (Model.TopStorageUsers.Any())
+                {
+                    var maxStorage = Model.TopStorageUsers.Max(u => u.StorageUsedBytes);
+                    @foreach (var u in Model.TopStorageUsers)
+                    {
+                        var storagePct = maxStorage > 0 ? (double)u.StorageUsedBytes / maxStorage * 100 : 0;
+                        <div class="d-flex align-items-center gap-3 py-3 border-bottom" style="border-color: var(--adm-card-border) !important;">
+                            <div class="adm-avatar" style="width:36px; height:36px; font-size:0.8rem;">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="fw-700 small">@u.FullName</div>
+                                <div class="x-small adm-text-dim">@u.Email</div>
+                                <div class="progress mt-1" style="height: 4px; background: var(--adm-hover);">
+                                    <div class="progress-bar" style="width: @(storagePct)%; background: var(--grad-primary);"></div>
+                                </div>
+                            </div>
+                            <div class="fw-800 small text-end" style="min-width: 70px;">@u.StorageFormatted</div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="text-center py-4 adm-text-dim">No storage data available</div>
+                }
+            </div>
+        </div>
+
+        <!-- Access/Login Analytics -->
+        <div class="col-lg-6">
+            <div class="adm-card p-4 h-100">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h6 class="adm-card-title mb-0"><i class="bi bi-shield-check me-2 adm-text-accent"></i>Login & Access Analytics</h6>
+                    <a href="/Analytics/Access" class="adm-link-accent small text-decoration-none fw-700">View All <i class="bi bi-arrow-right ms-1"></i></a>
+                </div>
+                
+                @if (Model.ActionBreakdown.Any())
+                {
+                    <div class="small fw-700 mb-3 adm-text-dim">ACTION TYPE BREAKDOWN</div>
+                    var maxAction = Model.ActionBreakdown.Values.Max();
+                    @foreach (var kv in Model.ActionBreakdown.Take(8))
+                    {
+                        var actionPct = maxAction > 0 ? (double)kv.Value / maxAction * 100 : 0;
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="fw-700 small" style="min-width: 120px;">@kv.Key</span>
+                            <div class="flex-grow-1">
+                                <div class="progress" style="height: 6px; background: var(--adm-hover);">
+                                    <div class="progress-bar" style="width: @(actionPct)%; background: var(--adm-accent-light);"></div>
+                                </div>
+                            </div>
+                            <span class="fw-800 small" style="min-width: 35px; text-align: right;">@kv.Value</span>
+                        </div>
+                    }
+                }
+
+                <!-- Recent Activity -->
+                @if (Model.RecentActivity.Any())
+                {
+                    <div class="small fw-700 mb-3 mt-4 adm-text-dim">RECENT ACTIVITY</div>
+                    <div class="adm-scroll-wrapper adm-scroll-sm">
+                        @foreach (var l in Model.RecentActivity)
+                        {
+                            <div class="d-flex align-items-start gap-2 py-2 border-bottom" style="border-color: var(--adm-card-border) !important;">
+                                <div class="adm-activity-dot mt-1"></div>
+                                <div class="flex-grow-1">
+                                    <div class="fw-700 small">@l.Action</div>
+                                    <div class="x-small adm-text-dim">@(l.UserEmail ?? "System") • @l.CreatedAt.ToString("MMM dd, HH:mm")</div>
+                                </div>
+                                @if (l.TargetType != null)
+                                {
+                                    <span class="badge adm-badge x-small">@l.TargetType</span>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center py-4 adm-text-dim">No activity data available</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,295 @@
+@model FileRowViewModel
+@{ ViewData["Title"] = "File Inspector"; }
+
+<div class="animate-on-scroll">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h4 class="fw-700 mb-1"><i class="bi bi-search me-2"></i>File Inspector</h4>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/Files" class="adm-link">Files</a></li>
+                    <li class="breadcrumb-item active text-white opacity-50">@Model.FileName</li>
+                </ol>
+            </nav>
+        </div>
+        <a href="/Files" class="btn adm-btn-ghost"><i class="bi bi-arrow-left me-2"></i>Back to List</a>
+    </div>
+
+    <div class="row g-4">
+        <!-- Left Side: Preview -->
+        <div class="col-lg-8">
+            <div class="adm-card overflow-hidden" style="min-height: 500px; display: flex; flex-direction: column;">
+                <div class="p-3 border-bottom d-flex justify-content-between align-items-center">
+                    <span class="fw-600"><i class="bi bi-image me-2"></i>File Preview</span>
+                    <span class="badge adm-badge">@Model.ContentType</span>
+                </div>
+                <div class="flex-grow-1 d-flex align-items-center justify-content-center bg-dark bg-opacity-25 relative" style="min-height: 500px;">
+                    @{
+                        var ext = (Model.Extension ?? "").ToLowerInvariant().TrimStart('.');
+                        var isOffice = new[] { "doc", "docx", "xls", "xlsx", "ppt", "pptx" }.Contains(ext);
+                        var isArchive = new[] { "zip", "rar", "7z", "tar", "gz", "bz2" }.Contains(ext);
+                        var isCode = new[] { "json", "css", "js", "ts", "py", "cs", "java", "cpp", "sql", "sh", "xml", "yaml", "yml", "bat", "ini", "conf", "env", "md", "log", "csproj", "sln", "go", "rs", "php", "rb", "txt" }.Contains(ext);
+                    }
+
+                    @if (Model.ContentType.StartsWith("image/"))
+                    {
+                        <img src="/Files/Stream/@Model.Id" class="img-fluid animate-fade-in" style="max-height: 600px; object-fit: contain;" alt="Preview" />
+                    }
+                    else if (Model.ContentType.StartsWith("video/"))
+                    {
+                        <video controls class="w-100 animate-fade-in" style="max-height: 600px; background: #000;">
+                            <source src="/Files/Stream/@Model.Id" type="@Model.ContentType">
+                            Your browser does not support the video tag.
+                        </video>
+                    }
+                    else if (Model.ContentType.StartsWith("audio/"))
+                    {
+                        <div class="text-center w-100 p-5 animate-fade-in">
+                            <i class="bi bi-music-note-beamed display-1 adm-text-accent opacity-25 mb-4 d-block"></i>
+                            <audio controls class="w-75 mx-auto">
+                                <source src="/Files/Stream/@Model.Id" type="@Model.ContentType">
+                            </audio>
+                        </div>
+                    }
+                    else if (Model.ContentType == "application/pdf" || ext == "pdf")
+                    {
+                        <iframe src="/Files/Stream/@Model.Id#toolbar=0" width="100%" height="600px" style="border:none;" class="animate-fade-in"></iframe>
+                    }
+                    else if (isOffice)
+                    {
+                        var isLocal = Context.Request.Host.Host.Contains("localhost") || Context.Request.Host.Host.Contains("127.0.0.1") || Context.Request.Host.Host.StartsWith("192.168.") || Context.Request.Host.Host.StartsWith("10.") || Context.Request.Host.Host.Contains("::1");
+                        if (isLocal && (ext == "docx" || ext == "doc"))
+                        {
+                            <div class="w-100 p-4 animate-fade-in bg-white text-dark rounded-3 mx-3 my-4 shadow-inner" id="docxPreview" style="max-height:600px; overflow-y:auto; min-height:400px; font-family: 'Segoe UI', serif;">
+                                <div class="text-center py-5 opacity-25" id="docxLoader">
+                                    <div class="spinner-border text-primary" role="status"></div>
+                                    <div class="mt-2 small fw-700">Extracting Document Layer... @(ext.ToUpper())</div>
+                                </div>
+                            </div>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+                            <script>
+                                fetch('/Files/Stream/@Model.Id')
+                                    .then(r => r.arrayBuffer())
+                                    .then(arrayBuffer => {
+                                        mammoth.convertToHtml({ arrayBuffer: arrayBuffer })
+                                            .then(result => {
+                                                document.getElementById('docxPreview').innerHTML = result.value || '<div class="text-center p-5 text-muted">Empty Document</div>';
+                                            })
+                                            .catch(err => {
+                                                document.getElementById('docxPreview').innerHTML = '<div class="alert alert-danger">Local Rendering Error: ' + err.message + '<br/><small>Showing raw text instead...</small></div>';
+                                                // Fallback to raw text if mammoth fails
+                                                fetch('/Files/Stream/@Model.Id').then(r=>r.text()).then(t => { 
+                                                    document.getElementById('docxPreview').innerHTML += `<pre style="font-size:0.7rem; opacity:0.5">${t.substring(0, 1000)}</pre>`;
+                                                });
+                                            });
+                                    });
+                            </script>
+                        }
+                        else if (isLocal)
+                        {
+                            <div class="w-100 p-4 animate-fade-in" id="officeStage" style="max-height:600px; overflow-y:auto;">
+                                <div class="adm-card bg-warning bg-opacity-10 p-5 d-block shadow-lg border-dashed text-center" id="officeLocalBox" style="border: 2px dashed var(--adm-accent);">
+                                    <div id="officeVisualPreview" class="mb-4 d-none">
+                                        <img id="pptxThumb" class="img-fluid rounded-3 shadow-lg border border-warning border-opacity-25" style="max-height: 400px;" alt="Slide Preview" />
+                                        <div class="mt-2 x-small adm-text-accent fw-700">EXTRACTED COVER SLIDE (LOW-LATENCY LOCAL)</div>
+                                    </div>
+                                    <div id="officeIconBox">
+                                        <i class="bi bi-file-earmark-ppt-fill display-1 text-warning mb-4"></i>
+                                        <h4 class="fw-700">Deep Inspection Mode (Local)</h4>
+                                        <p class="text-muted small mb-4">Cloud rendering for <b>.@ext.ToUpper()</b> is restricted on local hosts. Attempting local metadata extraction...</p>
+                                    </div>
+                                    <div class="d-flex gap-2 justify-content-center">
+                                        <a href="/Files/Stream/@Model.Id" class="btn btn-sm adm-btn-primary px-4"><i class="bi bi-download me-2"></i>Download</a>
+                                        <button class="btn btn-sm btn-outline-warning" onclick="document.getElementById('codePreview').scrollIntoView({behavior:'smooth'})">View Raw Components</button>
+                                    </div>
+                                </div>
+                                <div class="mt-4 p-3 adm-card bg-dark bg-opacity-50">
+                                    <div class="small adm-text-accent fw-700 mb-2">QUICK TEXT EXTRACTION (LOCAL)</div>
+                                    <div id="officeTextExtract" class="x-small font-monospace opacity-50" style="max-height: 200px; overflow:hidden;">Reading stream...</div>
+                                </div>
+                            </div>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+                            <script>
+                                (function() {
+                                    const fileUrl = '/Files/Stream/@Model.Id';
+                                    
+                                    // 1. Try to extract thumbnail if PPTX/DOCX/XLSX
+                                    if ("@ext" === "pptx" || "@ext" === "docx" || "@ext" === "xlsx") {
+                                        fetch(fileUrl)
+                                            .then(r => r.blob())
+                                            .then(blob => {
+                                                const zip = new JSZip();
+                                                return zip.loadAsync(blob);
+                                            })
+                                            .then(zip => {
+                                                // Look for standard OOXML thumbnail
+                                                const thumbPath = "docProps/thumbnail.jpeg";
+                                                const thumbFile = zip.file(thumbPath);
+                                                
+                                                if (thumbFile) {
+                                                    return thumbFile.async("base64");
+                                                }
+                                                throw new Error("No thumbnail found");
+                                            })
+                                            .then(base64 => {
+                                                const img = document.getElementById('pptxThumb');
+                                                img.src = "data:image/jpeg;base64," + base64;
+                                                document.getElementById('officeVisualPreview').classList.remove('d-none');
+                                                document.getElementById('officeIconBox').classList.add('d-none');
+                                                document.getElementById('officeLocalBox').style.borderStyle = "solid";
+                                                document.getElementById('officeLocalBox').style.background = "rgba(0,0,0,0.2)";
+                                            })
+                                            .catch(e => {
+                                                console.log("Local thumbnail extraction skipped:", e.message);
+                                            });
+                                    }
+
+                                    // 2. Always do text extraction as fallback
+                                    fetch(fileUrl)
+                                        .then(r => r.text())
+                                        .then(t => { 
+                                            const strings = t.match(/[a-zA-Z0-9\s]{4,}/g);
+                                            document.getElementById('officeTextExtract').textContent = strings ? strings.slice(0, 50).join(' ') + '...' : 'No readable strings extracted.';
+                                        });
+                                })();
+                            </script>
+                        }
+                        else
+                        {
+                            <div class="w-100 h-100 animate-fade-in" style="min-height:600px;">
+                                @{
+                                    var publicUrl = Uri.EscapeDataString($"{Context.Request.Scheme}://{Context.Request.Host}/Files/Stream/{Model.Id}");
+                                }
+                                <iframe src="https://view.officeapps.live.com/op/embed.aspx?src=@publicUrl" 
+                                        width="100%" height="600px" style="border:none; background:#fff;"></iframe>
+                                <div class="p-2 text-center small opacity-50">
+                                    <i class="bi bi-shield-check me-1"></i> Rendered via Microsoft Office Online Viewer
+                                </div>
+                            </div>
+                        }
+                    }
+                    else if (isArchive)
+                    {
+                        <div class="w-100 p-4 animate-fade-in" id="archivePreview" style="max-height:600px; overflow-y:auto; background: #0f0e0d;">
+                            <h6 class="adm-text-accent mb-3"><i class="bi bi-folder2-open me-2"></i>Archive Metadata Index</h6>
+                            <div id="archiveContent" class="opacity-75 small font-monospace">
+                                <div class="spinner-border spinner-border-sm text-accent" role="status"></div> Investigating...
+                            </div>
+                        </div>
+                        <script>
+                            fetch('/Files/GetArchiveContents/@Model.Id')
+                                .then(r => r.json())
+                                .then(data => {
+                                    const cont = document.getElementById('archiveContent');
+                                    if (!data || data.length === 0) cont.innerHTML = "No files found or protected archive.";
+                                    else cont.innerHTML = data.map(f => `<div class="border-bottom border-secondary border-opacity-10 py-1"><i class="bi bi-file-earmark me-2 opacity-50"></i>${f}</div>`).join('');
+                                });
+                        </script>
+                    }
+                    else if (Model.ContentType.StartsWith("text/") || isCode || (!isOffice && !isArchive && !Model.ContentType.StartsWith("image") && !Model.ContentType.StartsWith("video") && !Model.ContentType.StartsWith("audio") && Model.ContentType != "application/pdf" && ext != "pdf"))
+                    {
+                        <div class="w-100 p-4 font-monospace small text-white-50 animate-fade-in" id="codePreview" style="max-height:600px; overflow-y:auto; white-space:pre-wrap; background: #0c0b0a; border: 1px solid rgba(255,152,0,0.1);">
+                            <div class="d-flex justify-content-between align-items-center mb-3 opacity-25">
+                                <span class="small font-monospace">SOURCE READER v2.5 (UNIVERSAL)</span>
+                                <i class="bi bi-file-earmark-code fs-4"></i>
+                            </div>
+                            @if (Model.SizeBytes > 1024 * 1024)
+                            {
+                                <div class="text-center py-5">
+                                    <i class="bi bi-exclamation-triangle display-4 text-warning mb-3 d-block"></i>
+                                    <div class="fw-700">Large Data Stream detected (@Model.SizeFormatted)</div>
+                                    <div class="small opacity-50 mb-4">For system stability, universal preview is limited to the first 1MB.</div>
+                                    <button class="btn btn-sm btn-outline-warning" onclick="loadPartialRaw()">Inspect Header Data</button>
+                                </div>
+                            }
+                            <div id="codeContent" class="opacity-75">@(Model.SizeBytes > 1024 * 1024 ? "" : "Loading content...")</div>
+                        </div>
+                        <script>
+                            function loadPartialRaw() {
+                                document.getElementById('codeContent').textContent = "Streaming first 1MB...";
+                                // Note: In a real app we'd use Range headers, but here we just fetch.
+                                fetch('/Files/Stream/@Model.Id')
+                                    .then(r => r.text())
+                                    .then(t => { document.getElementById('codeContent').textContent = t.substring(0, 1000000); });
+                            }
+                            if (@(Model.SizeBytes <= 1024 * 1024 ? "true" : "false")) {
+                                fetch('/Files/Stream/@Model.Id')
+                                    .then(r => r.text())
+                                    .then(t => { document.getElementById('codeContent').textContent = t; })
+                                    .catch(e => { document.getElementById('codeContent').textContent = "Failed to load raw stream."; });
+                            }
+                        </script>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Details -->
+        <div class="col-lg-4">
+            <div class="adm-card p-4">
+                <h6 class="adm-card-title mb-4 border-bottom pb-2">File Properties</h6>
+                
+                <div class="mb-4">
+                    <small class="adm-text-dim d-block mb-1">File ID</small>
+                    <div class="d-flex align-items-center gap-2">
+                        <code class="adm-code flex-grow-1">@Model.Id</code>
+                        <button class="btn btn-sm adm-btn-icon" onclick="navigator.clipboard.writeText('@Model.Id')" title="Copy ID">
+                            <i class="bi bi-clipboard mt-0"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <small class="adm-text-dim d-block mb-1">File Name</small>
+                    <div class="fw-600 fs-5">@Model.FileName</div>
+                </div>
+
+                <div class="mb-4">
+                    <small class="adm-text-dim d-block mb-1">Owner</small>
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="adm-avatar" style="width:28px; height:28px; font-size:0.7rem;">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <span class="fw-500">@(Model.OwnerEmail ?? "Unknown User")</span>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-6">
+                        <small class="adm-text-dim d-block mb-1">Size</small>
+                        <div class="fw-600">@Model.SizeFormatted</div>
+                    </div>
+                    <div class="col-6">
+                        <small class="adm-text-dim d-block mb-1">Extension</small>
+                        <div class="badge adm-badge-lg">@Model.Extension.ToUpper().Replace(".", "")</div>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-6">
+                        <small class="adm-text-dim d-block mb-1">Status</small>
+                        @if (Model.IsDeleted) { <span class="badge bg-danger bg-opacity-25 text-danger">Trashed</span> }
+                        else { <span class="badge bg-success bg-opacity-25 text-success">Active</span> }
+                    </div>
+                    <div class="col-6">
+                        <small class="adm-text-dim d-block mb-1">Uploaded</small>
+                        <div class="fw-500">@Model.CreatedAt.ToString("MMM dd, yyyy")</div>
+                    </div>
+                </div>
+
+                <hr class="border-secondary opacity-10 my-4" />
+
+                <div class="d-grid gap-2">
+                    <a href="/Files/Stream/@Model.Id" target="_blank" class="btn adm-btn-primary py-3">
+                        <i class="bi bi-eye me-2"></i>Preview
+                    </a>
+                    <form asp-action="DeletePermanent" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('Permanently delete this file?')">
+                        <button type="submit" class="btn btn-outline-danger border-0 border-opacity-10 w-100 py-2">
+                            <i class="bi bi-trash3 me-2"></i>Delete Permanently
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

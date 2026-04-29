@@ -1,0 +1,192 @@
+@model UserListViewModel
+@{ ViewData["Title"] = "User Management"; }
+
+<!-- Toolbar -->
+<div class="adm-toolbar d-flex justify-content-between align-items-center mb-4 gap-3">
+    <div class="adm-toolbar-left">
+        <form method="get" class="d-flex gap-2 flex-wrap">
+            <input type="text" name="search" value="@Model.SearchTerm" class="form-control adm-input" style="width: 250px;" placeholder="Search name or email..." />
+            <select name="role" class="form-select adm-input" style="width: auto;">
+                <option value="">All Roles</option>
+                <option value="Admin" selected="@(Model.RoleFilter == "Admin")">Admin</option>
+                <option value="User" selected="@(Model.RoleFilter == "User")">User</option>
+            </select>
+            <select name="status" class="form-select adm-input" style="width: auto;">
+                <option value="">All Status</option>
+                <option value="active" selected="@(Model.StatusFilter == "active")">Active</option>
+                <option value="disabled" selected="@(Model.StatusFilter == "disabled")">Disabled</option>
+            </select>
+            <button type="submit" class="btn adm-btn-primary"><i class="bi bi-search me-1"></i>Filter</button>
+            @if (!string.IsNullOrEmpty(Model.SearchTerm) || !string.IsNullOrEmpty(Model.RoleFilter) || !string.IsNullOrEmpty(Model.StatusFilter))
+            {
+                <a href="/Users" class="btn adm-btn-ghost">Clear</a>
+            }
+        </form>
+    </div>
+    <div class="adm-toolbar-right d-flex align-items-center gap-3">
+        <span class="badge adm-badge-lg">@Model.TotalUsers users</span>
+        <button type="button" class="btn adm-btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
+            <i class="bi bi-person-plus-fill me-1"></i>Add User
+        </button>
+    </div>
+</div>
+
+<!-- Users Table -->
+<div class="adm-card">
+    <div class="table-responsive">
+        <table class="table adm-table mb-0">
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Roles</th>
+                    <th>Email Verified</th>
+                    <th>Storage</th>
+                    <th>Status</th>
+                    <th>Joined</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var u in Model.Users)
+            {
+                <tr class="animate-fade-in">
+                    <td>
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="adm-avatar @(u.IsActive ? "" : "opacity-50")">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+                            <div>
+                                <div class="fw-600">@u.FullName</div>
+                                <small class="adm-text-muted">@u.Email</small>
+                            </div>
+                        </div>
+                    </td>
+                    <td>@foreach (var r in u.Roles) { <span class="badge adm-badge me-1">@r</span> }</td>
+                    <td>
+                        @if (u.EmailConfirmed)
+                        { <i class="bi bi-check-circle-fill text-success"></i> }
+                        else { <i class="bi bi-x-circle text-danger"></i> }
+                    </td>
+                    <td class="adm-text-muted">@u.StorageFormatted</td>
+                    <td>
+                        @if (u.IsActive) { <span class="badge bg-success bg-opacity-10 text-success"><span class="adm-status-dot status-active"></span> Active</span> }
+                        else { <span class="badge bg-danger bg-opacity-10 text-danger"><span class="adm-status-dot status-disabled"></span> Disabled</span> }
+                    </td>
+                    <td class="adm-text-muted">@u.CreatedAt.ToString("MMM dd, yyyy")</td>
+                    <td class="text-end">
+                        <div class="d-flex gap-1 justify-content-end">
+                            <a href="/Users/Details/@u.Id" class="btn btn-sm adm-btn-icon text-info" title="View Profile">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <button type="button" class="btn btn-sm adm-btn-icon text-warning-adm" title="Edit" 
+                                    onclick="openEditUserModal('@u.Id')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            @if (u.IsActive)
+                            {
+                                <form asp-action="Disable" method="post" class="d-inline">
+                                    <input type="hidden" name="id" value="@u.Id" />
+                                    <button type="submit" class="btn btn-sm adm-btn-icon text-warning" title="Disable" onclick="return confirm('Disable this user?')">
+                                        <i class="bi bi-slash-circle"></i>
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <form asp-action="Enable" method="post" class="d-inline">
+                                    <input type="hidden" name="id" value="@u.Id" />
+                                    <button type="submit" class="btn btn-sm adm-btn-icon text-success" title="Enable">
+                                        <i class="bi bi-check-circle"></i>
+                                    </button>
+                                </form>
+                            }
+                            <form asp-action="ToggleAdmin" method="post" class="d-inline">
+                                <input type="hidden" name="id" value="@u.Id" />
+                                <button type="submit" class="btn btn-sm adm-btn-icon text-warning-adm" title="@(u.Roles.Contains("Admin") ? "Remove Admin" : "Make Admin")" onclick="return confirm('Toggle admin role for this user?')">
+                                    <i class="bi bi-shield-@(u.Roles.Contains("Admin") ? "fill-minus" : "fill-plus")"></i>
+                                </button>
+                            </form>
+                            <form asp-action="Delete" method="post" class="d-inline">
+                                <input type="hidden" name="id" value="@u.Id" />
+                                <button type="submit" class="btn btn-sm adm-btn-icon text-danger" title="Delete" onclick="return confirm('Permanently delete this user? This cannot be undone.')">
+                                    <i class="bi bi-trash3"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    @if (Model.TotalPages > 1)
+    {
+        <div class="adm-pagination">
+            @for (int p = 1; p <= Model.TotalPages; p++)
+            {
+                <a href="/Users?page=@p&search=@Model.SearchTerm&role=@Model.RoleFilter&status=@Model.StatusFilter"
+                   class="btn btn-sm @(p == Model.Page ? "adm-btn-primary" : "adm-btn-ghost")">@p</a>
+            }
+        </div>
+    }
+</div>
+
+<!-- Add User Modal -->
+<div class="modal fade" id="addUserModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content adm-card border-0">
+            <div class="modal-header border-bottom-0 pb-2">
+                <h5 class="modal-title fw-800">Add New User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form asp-action="Create" method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="adm-label">Full Name</label>
+                        <input type="text" name="fullName" class="form-control adm-input" placeholder="e.g. John Doe" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="adm-label">Email Address</label>
+                        <input type="email" name="email" class="form-control adm-input" placeholder="email@example.com" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="adm-label">Password</label>
+                        <input type="password" name="password" class="form-control adm-input" placeholder="••••••••" required />
+                    </div>
+                    <div class="form-check form-switch mb-3 mt-4">
+                        <input class="form-check-input" type="checkbox" name="isAdmin" value="true" id="addIsAdmin">
+                        <label class="form-check-label adm-label ms-2" for="addIsAdmin">Grant Admin Permissions</label>
+                    </div>
+                </div>
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-sm adm-btn-ghost px-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-sm adm-btn-primary px-4">Create User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<partial name="_EditUserModalPartial" />
+
+@section Scripts {
+<script>
+async function openEditUserModal(id) {
+    try {
+        const resp = await fetch(`/Users/GetDetails/${id}`);
+        if (!resp.ok) throw new Error('User not found');
+        const data = await resp.json();
+        
+        document.getElementById('editUserId').value = data.id;
+        document.getElementById('editUserFullName').value = data.fullName;
+        document.getElementById('editUserEmail').value = data.email;
+        document.getElementById('editUserPassword').value = '';
+        document.getElementById('editIsAdmin').checked = data.isAdmin;
+        
+        new bootstrap.Modal(document.getElementById('editUserModal')).show();
+    } catch (err) {
+        showToast('Error: ' + err.message, 'danger');
+    }
+}
+</script>
+}
